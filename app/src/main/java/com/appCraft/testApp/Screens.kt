@@ -2,18 +2,24 @@ package com.appCraft.testApp
 
 import android.content.Intent
 import android.net.Uri
+import com.appCraft.testApp.ui.fragment.main.MainFlowFragment
+import com.appCraft.testApp.ui.fragment.main.MainFragment
 import com.appCraft.testApp.ui.fragment.splash.SplashFlowFragment
 import com.appCraft.testApp.ui.fragment.splash.SplashFragment
-import pro.appcraft.lib.navigation.getFragmentScreen
 import com.github.terrakok.cicerone.androidx.ActivityScreen
+import pro.appcraft.lib.navigation.getFragmentScreen
 
 object Screens {
     object Flow {
         fun splash() = SplashFlowFragment::class.getFragmentScreen()
+
+        fun main() = MainFlowFragment::class.getFragmentScreen()
     }
 
     object Screen {
         fun splash() = SplashFragment::class.getFragmentScreen()
+
+        fun main() = MainFragment::class.getFragmentScreen()
 
 //        fun cityPicker(
 //            requestId: Long

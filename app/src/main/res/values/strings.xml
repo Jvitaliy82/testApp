@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">testApp</string>
+    <string name="from_web">from web</string>
+    <string name="saved">saved</string>
 </resources>

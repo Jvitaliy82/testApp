@@ -1,4 +1,4 @@
-package com.appCraft.testApp.presentation.splash
+package com.appCraft.testApp.presentation.main
 
 import com.appCraft.domain.global.CoroutineProvider
 import com.appCraft.testApp.Screens
@@ -11,7 +11,7 @@ import moxy.InjectViewState
 import org.koin.core.component.inject
 
 @InjectViewState
-class SplashPresenter : BasePresenter<SplashView>(), EventDispatcher.EventListener {
+class MainPresenter : BasePresenter<MainView>(), EventDispatcher.EventListener {
     private val eventDispatcher: EventDispatcher by inject()
     private val coroutineProvider: CoroutineProvider by inject()
     private val errorHandler: ErrorHandler by inject()
