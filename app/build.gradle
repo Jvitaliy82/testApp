@@ -1,0 +1,189 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.firebase.crashlytics'
+
+ext.APK_NAME = 'testApp'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.appCraft.testApp"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    signingConfigs {
+        config {
+            storeFile file('../testApp.jks')
+            keyAlias 'app'
+            if (project.hasProperty('PROJECT_KEY_PASSWORD') && project.hasProperty('PROJECT_KEYSTORE_PASSWORD')) {
+                keyPassword PROJECT_KEY_PASSWORD
+                storePassword PROJECT_KEYSTORE_PASSWORD
+            } else {
+                throw new GradleException('Not found signing config password properties')
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.config
+            manifestPlaceholders = [
+                    enableCrashReporting: "false",
+                    usesCleartextTraffic: "true",
+            ]
+        }
+        staging {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            manifestPlaceholders = [
+                    enableCrashReporting: "true",
+                    usesCleartextTraffic: "true",
+            ]
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            manifestPlaceholders = [
+                    enableCrashReporting: "true",
+                    usesCleartextTraffic: "false",
+            ]
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError true
+        checkAllWarnings true
+        ignoreWarnings false
+        warningsAsErrors false
+        checkDependencies true
+        htmlReport true
+        explainIssues true
+        noLines false
+        textOutput 'stdout'
+    }
+    androidExtensions.experimental = true
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${APK_NAME}_${variant.versionName}(${variant.versionCode})_${variant.name}.apk"
+        }
+    }
+    afterEvaluate {
+        applicationVariants.all {
+            variant ->
+                def variantName = variant.name.capitalize()
+                if (variantName != 'Debug') {
+                    project.tasks["compile${variantName}Sources"].dependsOn(project.tasks["lint${variantName}"])
+                }
+        }
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    }
+    bundle.language.enableSplit = false
+    packagingOptions.exclude("META-INF/*.kotlin_module")
+}
+
+dependencies {
+    implementation project(':data')
+    implementation project(':domain')
+    implementation project(':device')
+    implementation project(':resources')
+
+    // AppCraft utils
+    implementation 'com.github.AppCraftTeam:common-utils-android:1.0.5'
+    implementation 'com.github.AppCraftTeam:pagination-utils-android:2.0.0'
+    implementation 'com.github.AppCraftTeam:navigation-utils-android:2.0.2'
+    implementation 'com.github.AppCraftTeam:permissions-utils-android:1.0.2'
+    implementation 'com.github.AppCraftTeam:dialog-utils-android:1.0.2'
+    // AppCraft UI
+    implementation 'com.github.AppCraftTeam:rubber-picker-ui-android:1.1.0'
+    implementation 'com.github.AppCraftTeam:circle-progress-bar-ui-android:1.0.2'
+
+    // Desugaring
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
+
+    // AndroidX
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
+    implementation "androidx.viewpager2:viewpager2:1.1.0-alpha01"
+    implementation "androidx.annotation:annotation:1.1.0"
+    implementation 'androidx.fragment:fragment-ktx:1.2.5'
+
+    // Coroutines
+    def coroutinesVersion = '1.4.2'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    // Material
+    implementation 'com.google.android.material:material:1.2.1'
+
+    // Koin
+    implementation "org.koin:koin-core:$koinVersion"
+    implementation "org.koin:koin-android:$koinVersion"
+    implementation "org.koin:koin-androidx-scope:$koinVersion"
+    implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
+    implementation "org.koin:koin-androidx-fragment:$koinVersion"
+
+    // Moxy MVP
+    def moxyVersion = '2.2.1'
+    implementation "com.github.moxy-community:moxy:$moxyVersion"
+    kapt "com.github.moxy-community:moxy-compiler:$moxyVersion"
+    implementation "com.github.moxy-community:moxy-androidx:$moxyVersion"
+    implementation "com.github.moxy-community:moxy-material:$moxyVersion"
+
+    // Cicerone navigation
+    implementation 'com.github.terrakok:cicerone:6.6'
+
+    // FastAdapter
+    def fastAdapterVersion = '5.3.2'
+    implementation "com.mikepenz:fastadapter:$fastAdapterVersion"
+    implementation "com.mikepenz:fastadapter-extensions-diff:$fastAdapterVersion"
+    implementation "com.mikepenz:fastadapter-extensions-drag:$fastAdapterVersion"
+    implementation "com.mikepenz:fastadapter-extensions-scroll:$fastAdapterVersion"
+    implementation "com.mikepenz:fastadapter-extensions-swipe:$fastAdapterVersion"
+    implementation "com.mikepenz:fastadapter-extensions-ui:$fastAdapterVersion"
+    implementation "com.mikepenz:fastadapter-extensions-utils:$fastAdapterVersion"
+
+    // Glide
+    def glideVersion = '4.11.0'
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+    implementation("com.github.bumptech.glide:recyclerview-integration:$glideVersion") {
+        transitive = false
+    }
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-crashlytics:17.3.0'
+
+    // Language
+    implementation "com.github.YarikSOffice:lingver:1.3.0"
+}

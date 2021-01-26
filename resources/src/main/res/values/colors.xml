@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="globalColorPrimary">#84C549</color>
+    <color name="globalColorPrimaryDark">#F44E4F</color>
+    <color name="globalColorAccent">#F44E4F</color>
+
+    <color name="colorPrimaryLight">#EEEEFF</color>
+    <color name="colorPrimaryA50">#8084C549</color>
+    <color name="colorAccentTransparent">#BF414141</color>
+    <color name="colorAccentLight">#F6F7FB</color>
+    <color name="colorText">#333E4F</color>
+    <color name="colorTextDark">#858B95</color>
+    <color name="colorTextLight">#ADB2B9</color>
+    <color name="colorTextWhite">#FFFFFF</color>
+    <color name="colorTextWhiteTransparent">#80FFFFFF</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorBackgroundLight">#FAFAFA</color>
+    <color name="colorBackgroundGray">#EEF1F4</color>
+    <color name="colorBackgroundDark">#002534</color>
+    <color name="colorBackgroundDarkSecondary">#292B33</color>
+    <color name="colorBackgroundDarkGray">#D6D7DA</color>
+    <color name="colorBackgroundDarkGrayTransparent">#80D5D5D5</color>
+    <color name="colorBackgroundSemiTransparent">#BFFFFFFF</color>
+    <color name="colorBackgroundTransparent">#33FFFFFF</color>
+    <color name="colorBackgroundDarkTransparent">#80002534</color>
+    <color name="colorBackgroundBlackTransparent">#33000000</color>
+    <color name="colorLink">#4642FF</color>
+    <color name="colorNotification">#FFFFFF</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorRed">#F44E4F</color>
+    <color name="colorRedA20">#20F44E4F</color>
+    <color name="colorGreen">#84C549</color>
+    <color name="colorGreenA20">#2084C549</color>
+    <color name="colorPink">#F564AA</color>
+    <color name="colorPinkTransparent">#26F564AA</color>
+    <color name="colorOrange">#F7953F</color>
+    <color name="colorYellow">#FFCA37</color>
+    <color name="colorYellowA80">#CCFFCA37</color>
+    <color name="colorBlue">#1978F2</color>
+    <color name="colorBlueTransparent">#267886FF</color>
+    <color name="colorPhotoFilter">#66000000</color>
+    <color name="colorGalleryPopupBackground">#9A000000</color>
+    <color name="colorNavigationInactive">#D5D5D5</color>
+    <color name="colorLightGray">#EEF1F4</color>
+    <color name="colorLightGrayA30">#4DEEF1F4</color>
+
+    <color name="ic_launcher_background">#DDDDDD</color>
+</resources>

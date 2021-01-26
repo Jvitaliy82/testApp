@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="baseline_grid_tiny">4dp</dimen>
+    <dimen name="baseline_grid_small">8dp</dimen>
+    <dimen name="baseline_grid_medium">12dp</dimen>
+    <dimen name="baseline_grid">16dp</dimen>
+    <dimen name="baseline_grid_24">24dp</dimen>
+    <dimen name="baseline_grid_big">32dp</dimen>
+    <dimen name="baseline_grid_large">64dp</dimen>
+
+    <dimen name="zero">0dp</dimen>
+</resources>
