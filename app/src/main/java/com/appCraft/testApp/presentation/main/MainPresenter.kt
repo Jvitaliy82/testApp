@@ -7,6 +7,7 @@ import com.appCraft.testApp.dispatcher.event.EventDispatcher
 import com.appCraft.testApp.dispatcher.notifier.Notifier
 import com.appCraft.testApp.global.presentation.BasePresenter
 import com.appCraft.testApp.global.presentation.ErrorHandler
+import com.appCraft.testApp.utils.MainTab
 import moxy.InjectViewState
 import org.koin.core.component.inject
 
@@ -19,6 +20,8 @@ class MainPresenter : BasePresenter<MainView>(), EventDispatcher.EventListener {
 
     private var animationFinished: Boolean = false
     private var databaseInitialized: Boolean = false
+
+    var selectedNavigationTab: MainTab = MainTab.WEB
 
     init {
         subscribeToEvents()

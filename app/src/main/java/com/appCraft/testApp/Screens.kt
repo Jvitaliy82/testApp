@@ -2,8 +2,12 @@ package com.appCraft.testApp
 
 import android.content.Intent
 import android.net.Uri
+import com.appCraft.testApp.ui.fragment.fromWeb.FromWebFlowFragment
+import com.appCraft.testApp.ui.fragment.fromWeb.FromWebFragment
 import com.appCraft.testApp.ui.fragment.main.MainFlowFragment
 import com.appCraft.testApp.ui.fragment.main.MainFragment
+import com.appCraft.testApp.ui.fragment.saved.SavedFlowFragment
+import com.appCraft.testApp.ui.fragment.saved.SavedFragment
 import com.appCraft.testApp.ui.fragment.splash.SplashFlowFragment
 import com.appCraft.testApp.ui.fragment.splash.SplashFragment
 import com.github.terrakok.cicerone.androidx.ActivityScreen
@@ -14,12 +18,20 @@ object Screens {
         fun splash() = SplashFlowFragment::class.getFragmentScreen()
 
         fun main() = MainFlowFragment::class.getFragmentScreen()
+
+        fun fromWeb() = FromWebFlowFragment::class.getFragmentScreen()
+
+        fun saved() = SavedFlowFragment::class.getFragmentScreen()
     }
 
     object Screen {
         fun splash() = SplashFragment::class.getFragmentScreen()
 
         fun main() = MainFragment::class.getFragmentScreen()
+
+        fun fromWeb() = FromWebFragment::class.getFragmentScreen()
+
+        fun saved() = SavedFragment::class.getFragmentScreen()
 
 //        fun cityPicker(
 //            requestId: Long

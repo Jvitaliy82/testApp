@@ -25,4 +25,7 @@
     <string name="open_folder">Открыть папку</string>
     <string name="open_file">Открыть файл</string>
     <string name="share">Поделиться</string>
+
+    <string name="from_web">из сети</string>
+    <string name="saved">сохраненные</string>
 </resources>
