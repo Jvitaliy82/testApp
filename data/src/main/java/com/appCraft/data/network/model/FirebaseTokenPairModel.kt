@@ -1,10 +1,9 @@
 package com.appCraft.data.network.model
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
+
 data class FirebaseTokenPairModel(
-    @SerialName("oldToken") val oldToken: String,
-    @SerialName("newToken") val newToken: String
+    @SerializedName("oldToken") val oldToken: String,
+    @SerializedName("newToken") val newToken: String
 )

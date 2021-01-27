@@ -15,17 +15,17 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            buildConfigField 'String', 'API_ENDPOINT', '"https://example.com/"' // debug server
+            buildConfigField 'String', 'API_ENDPOINT', '"https://www.episodate.com/api/"' // debug server
         }
         staging {
             minifyEnabled true
             consumerProguardFiles 'proguard-rules.pro'
-            buildConfigField 'String', 'API_ENDPOINT', '"https://example.com/"' // stage server
+            buildConfigField 'String', 'API_ENDPOINT', '"https://www.episodate.com/api/"' // stage server
         }
         release {
             minifyEnabled true
             consumerProguardFiles 'proguard-rules.pro'
-            buildConfigField 'String', 'API_ENDPOINT', '"https://example.com/"' // release server
+            buildConfigField 'String', 'API_ENDPOINT', '"https://www.episodate.com/api/"' // release server
         }
     }
 
@@ -51,6 +51,8 @@ dependencies {
     def retrofitVersion = '2.9.0'
     api "com.squareup.retrofit2:retrofit:$retrofitVersion"
     api "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.7.0"
+    api "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    api "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
 
     // OkHttp 3
     def okhttpVersion = '4.9.0'
