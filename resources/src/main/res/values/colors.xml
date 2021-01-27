@@ -47,4 +47,10 @@
     <color name="colorLightGrayA30">#4DEEF1F4</color>
 
     <color name="ic_launcher_background">#DDDDDD</color>
+
+    <color name="colorCardBackground">#313E6E</color>
+    <color name="colorTextPrimary">#CBD5ED</color>
+    <color name="colorTextOther">#FAD303</color>
+    <color name="colorTextSecondary">#4A5B82</color>
+    <color name="colorPrimaryLight_t">#222B4E</color>
 </resources>

@@ -1,10 +1,9 @@
 package com.appCraft.testApp.di
 
 import android.content.Context
-import com.appCraft.testApp.BuildConfig
 import com.appCraft.data.network.interceptor.ErrorResponseInterceptor
 import com.appCraft.data.network.interceptor.HeaderInterceptor
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.appCraft.testApp.BuildConfig
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.Cache
@@ -15,6 +14,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -80,7 +80,8 @@ internal val networkModule = module {
         }
         return Retrofit.Builder()
             .client(okHttpClient)
-            .addConverterFactory(json.asConverterFactory(contentType))
+//            .addConverterFactory(json.asConverterFactory(contentType))
+            .addConverterFactory(GsonConverterFactory.create())
     }
 
     factory(named("CommonBuilder")) {

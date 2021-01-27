@@ -1,13 +1,13 @@
 package com.appCraft.testApp.global.presentation
 
 import android.content.res.Resources
-import com.appCraft.testApp.R
+import android.util.Log
 import com.appCraft.data.global.NetErrorCode.BAD_REQUEST
 import com.appCraft.data.global.NetErrorCode.FORBIDDEN
 import com.appCraft.data.global.NetErrorCode.INTERNAL_SERVER_ERROR
 import com.appCraft.data.global.NetErrorCode.NOT_FOUND
 import com.appCraft.data.global.NetErrorCode.UNAUTHORIZED
-import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.appCraft.testApp.R
 import mu.KotlinLogging
 import pro.appcraft.lib.navigation.AppRouter
 import retrofit2.HttpException
@@ -74,6 +74,7 @@ class ErrorHandler(var resources: Resources, private val router: AppRouter) {
     }
 
     private fun sendCrashlyticsReport(error: Throwable) {
-        FirebaseCrashlytics.getInstance().recordException(error)
+//        FirebaseCrashlytics.getInstance().recordException(error)
+        Log.d("M1", error.message.toString())
     }
 }
