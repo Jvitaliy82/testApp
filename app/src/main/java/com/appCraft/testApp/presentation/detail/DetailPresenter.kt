@@ -1,9 +1,7 @@
-package com.appCraft.testApp.presentation.fromWeb
+package com.appCraft.testApp.presentation.detail
 
-import android.util.Log
 import com.appCraft.domain.global.CoroutineProvider
-import com.appCraft.domain.interactor.films.GetTvShowByPageUseCase
-import com.appCraft.testApp.Screens
+import com.appCraft.domain.interactor.films.GetTvDetailByIdUseCase
 import com.appCraft.testApp.dispatcher.event.CustomEvent
 import com.appCraft.testApp.dispatcher.event.EventDispatcher
 import com.appCraft.testApp.dispatcher.notifier.Notifier
@@ -14,26 +12,26 @@ import moxy.InjectViewState
 import org.koin.core.component.inject
 
 @InjectViewState
-class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventListener {
+class DetailPresenter : BasePresenter<DetailView>(), EventDispatcher.EventListener {
     private val eventDispatcher: EventDispatcher by inject()
     private val coroutineProvider: CoroutineProvider by inject()
     private val errorHandler: ErrorHandler by inject()
     private val notifier: Notifier by inject()
-    private val getTvShowByPageUseCase: GetTvShowByPageUseCase by inject()
+    private val getTvDetailByIdUseCase: GetTvDetailByIdUseCase by inject()
 
-    var currentPage = 1
+    var id: String = ""
 
     init {
         subscribeToEvents()
     }
 
-    fun getTvShow(page: Int) {
+
+    fun getTvDetail() {
         coroutineProvider.scopeMain.launch {
-            getTvShowByPageUseCase(page).process(
+            getTvDetailByIdUseCase(id).process(
                 { result ->
-                    result.tv_shows?.let {
-                        Log.d("M1", it.toString())
-                        viewState.setListInAdapter(it)
+                    result?.let {
+                        viewState.setData(it)
                     }
                 },
                 { error ->
@@ -43,10 +41,6 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
                 }
             )
         }
-    }
-
-    fun navigateToDetailFragment(id: String) {
-        viewState.routerNavigateTo(Screens.Flow.detail(id))
     }
 
     override fun onDestroy() {
@@ -79,9 +73,4 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
     }
 
 
-//    private fun tryContinue() {
-//        if (databaseInitialized && animationFinished) {
-//            viewState.routerNewRootScreen(Screens.Flow.main())
-//        }
-//    }
 }

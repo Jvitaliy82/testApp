@@ -11,7 +11,7 @@ import com.appCraft.testApp.presentation.fromWeb.FromWebView
 import kotlinx.android.synthetic.main.fragment_from_web.*
 import moxy.presenter.InjectPresenter
 
-class FromWebFragment : BaseFragment(R.layout.fragment_from_web), FromWebView {
+class FromWebFragment : BaseFragment(R.layout.fragment_from_web), FromWebView, TvShowXAdapter.OnItemClickListener {
 
     @InjectPresenter
     lateinit var presenter: FromWebPresenter
@@ -25,13 +25,17 @@ class FromWebFragment : BaseFragment(R.layout.fragment_from_web), FromWebView {
     }
 
     private fun setupRecyclerView() = recycler_view.apply {
-        tvShowXAdapter = TvShowXAdapter()
+        tvShowXAdapter = TvShowXAdapter(this@FromWebFragment)
         adapter = tvShowXAdapter
         layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun setListInAdapter(list: List<TvShowModel.TvShowX>) {
         tvShowXAdapter.submitList(list)
+    }
+
+    override fun onItemClick(tvShow: TvShowModel.TvShowX) {
+        presenter.navigateToDetailFragment(tvShow.id)
     }
 
     companion object {

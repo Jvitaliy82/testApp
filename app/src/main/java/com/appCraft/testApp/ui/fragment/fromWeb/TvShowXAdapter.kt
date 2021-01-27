@@ -11,7 +11,7 @@ import com.appCraft.testApp.R
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_recycler.view.*
 
-class TvShowXAdapter : ListAdapter<TvShowModel.TvShowX, TvShowXAdapter.TvShowXViewHolder>(DiffCallback()) {
+class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<TvShowModel.TvShowX, TvShowXAdapter.TvShowXViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowXViewHolder {
         return TvShowXViewHolder(
@@ -28,6 +28,17 @@ class TvShowXAdapter : ListAdapter<TvShowModel.TvShowX, TvShowXAdapter.TvShowXVi
     }
 
     inner class TvShowXViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+
+        init {
+            view.setOnClickListener {
+                val position = absoluteAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val tv = getItem(position)
+                    listener.onItemClick(tv)
+                }
+            }
+        }
+
         fun bind(tvShowX : TvShowModel.TvShowX) {
             view.apply {
                 textName.text = tvShowX.name
@@ -49,5 +60,9 @@ class TvShowXAdapter : ListAdapter<TvShowModel.TvShowX, TvShowXAdapter.TvShowXVi
         override fun areContentsTheSame(oldItem: TvShowModel.TvShowX, newItem: TvShowModel.TvShowX) =
             oldItem == newItem
 
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(tvShow: TvShowModel.TvShowX)
     }
 }

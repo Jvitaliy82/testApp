@@ -2,6 +2,8 @@ package com.appCraft.testApp
 
 import android.content.Intent
 import android.net.Uri
+import com.appCraft.testApp.ui.fragment.detail.DetailFlowFragment
+import com.appCraft.testApp.ui.fragment.detail.DetailFragment
 import com.appCraft.testApp.ui.fragment.fromWeb.FromWebFlowFragment
 import com.appCraft.testApp.ui.fragment.fromWeb.FromWebFragment
 import com.appCraft.testApp.ui.fragment.main.MainFlowFragment
@@ -22,6 +24,10 @@ object Screens {
         fun fromWeb() = FromWebFlowFragment::class.getFragmentScreen()
 
         fun saved() = SavedFlowFragment::class.getFragmentScreen()
+
+        fun detail(
+            id: String? = null
+        ) = DetailFlowFragment::class.getFragmentScreen(DetailFragment.ID to id)
     }
 
     object Screen {
@@ -32,6 +38,10 @@ object Screens {
         fun fromWeb() = FromWebFragment::class.getFragmentScreen()
 
         fun saved() = SavedFragment::class.getFragmentScreen()
+
+        fun detail(
+            id: String? = null
+        ) = DetailFragment::class.getFragmentScreen( DetailFragment.ID to id)
 
 //        fun cityPicker(
 //            requestId: Long
