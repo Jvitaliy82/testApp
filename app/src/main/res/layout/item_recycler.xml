@@ -21,16 +21,14 @@
         app:layout_constraintTop_toTopOf="@id/textName" />
 
 
-    <com.makeramen.roundedimageview.RoundedImageView
+    <ImageView
         android:id="@+id/imageTVShow"
         android:layout_width="@dimen/_70sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:scaleType="centerCrop"
-        android:transitionName="imageTN"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:riv_corner_radius="@dimen/_4sdp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textName"

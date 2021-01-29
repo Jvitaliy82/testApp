@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.appcraft.domain.model.TvShowModel
 import com.appcraft.testapp.R
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kotlinx.android.synthetic.main.item_recycler.view.*
+
 
 class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<TvShowModel.TvShowX, TvShowXAdapter.TvShowXViewHolder>(
     DiffCallback()
@@ -18,10 +21,11 @@ class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<Tv
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowXViewHolder {
         return TvShowXViewHolder(
             LayoutInflater.from(parent.context).inflate(
-            R.layout.item_recycler,
-            parent,
-            false
-        ))
+                R.layout.item_recycler,
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: TvShowXViewHolder, position: Int) {
@@ -41,7 +45,7 @@ class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<Tv
             }
         }
 
-        fun bind(tvShowX : TvShowModel.TvShowX) {
+        fun bind(tvShowX: TvShowModel.TvShowX) {
             view.apply {
                 textName.text = tvShowX.name
                 textNetwork.text = tvShowX.network
@@ -50,6 +54,7 @@ class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<Tv
                 Glide
                     .with(this)
                     .load(tvShowX.image_thumbnail_path)
+                    .transform(CenterCrop(), RoundedCorners(16))
                     .into(imageTVShow)
             }
         }
