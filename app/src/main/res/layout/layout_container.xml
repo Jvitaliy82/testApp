@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.appCraft.testApp.global.ui.view.WindowInsetsFrameLayout
+<com.appcraft.testapp.global.ui.view.WindowInsetsFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container"
     android:layout_width="match_parent"

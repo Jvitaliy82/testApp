@@ -60,7 +60,7 @@
 #    kotlinx.serialization.KSerializer serializer(...);
 #}
 
--keep,includedescriptorclasses class com.appCraft.testApp.**$$serializer { *; }
+-keep,includedescriptorclasses class com.appcraft.testapp.**$$serializer { *; }
 #-keepclassmembers class com.appCraft.testApp.** {
 #    *** Companion;
 #}

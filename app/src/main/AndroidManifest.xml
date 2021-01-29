@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.appCraft.testApp">
+    package="com.appcraft.testapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -23,13 +23,13 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".App"
+        android:name="com.appcraft.testapp.App"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="${usesCleartextTraffic}"
         tools:ignore="UnusedAttribute">
 
         <activity
-            android:name=".ui.AppActivity"
+            android:name="com.appcraft.testapp.ui.AppActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize">
@@ -40,7 +40,7 @@
         </activity>
 
         <receiver
-            android:name=".receiver.NotificationReceiver"
+            android:name="com.appcraft.testapp.receiver.NotificationReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.appCraft.testApp.notification" />
@@ -48,7 +48,7 @@
         </receiver>
 
         <service
-            android:name="com.appCraft.device.service.AppFirebaseMessagingService"
+            android:name="com.appcraft.device.service.AppFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
