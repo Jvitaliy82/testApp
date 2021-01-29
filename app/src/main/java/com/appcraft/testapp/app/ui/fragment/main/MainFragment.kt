@@ -14,9 +14,12 @@ import com.appcraft.testapp.app.ui.fragment.saved.SavedFragment
 import com.appcraft.testapp.app.utils.MainTab
 import kotlinx.android.synthetic.main.fragment_main.*
 import moxy.presenter.InjectPresenter
+import pro.appcraft.lib.utils.common.addSystemWindowInsetToMargin
 import java.util.*
 
 class MainFragment : BaseFragment(R.layout.fragment_main), MainView {
+
+    override var isLightStatusBar = false
 
     @InjectPresenter
     lateinit var presenter: MainPresenter
@@ -31,6 +34,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main), MainView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        container.addSystemWindowInsetToMargin(top = true)
         initNavigation()
         bottom_nav.setOnNavigationItemSelectedListener {
             when (it.itemId) {

@@ -10,6 +10,7 @@ import com.appcraft.testapp.app.presentation.detail.DetailView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_detail.*
 import moxy.presenter.InjectPresenter
+import pro.appcraft.lib.utils.common.addSystemWindowInsetToMargin
 
 class DetailFragment : BaseFragment(R.layout.fragment_detail), DetailView {
 
@@ -18,6 +19,7 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail), DetailView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        container.addSystemWindowInsetToMargin(top = true, bottom = true)
         arguments?.let {
             presenter.id = it.getInt(ID)
         }
