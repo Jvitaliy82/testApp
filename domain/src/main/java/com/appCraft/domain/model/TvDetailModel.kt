@@ -15,6 +15,7 @@ data class TvDetailModel(
         val description: String,
         val country: String,
         val status: String,
-        val start_date: String
+        val start_date: String,
+        val network: String,
     ) : Parcelable
 }

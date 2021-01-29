@@ -64,5 +64,6 @@ class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<Tv
 
     interface OnItemClickListener {
         fun onItemClick(tvShow: TvShowModel.TvShowX)
+        fun addFavorite(tvShow: TvShowModel.TvShowX)
     }
 }

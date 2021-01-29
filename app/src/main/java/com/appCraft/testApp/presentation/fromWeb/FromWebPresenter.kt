@@ -3,6 +3,7 @@ package com.appCraft.testApp.presentation.fromWeb
 import android.util.Log
 import com.appCraft.domain.global.CoroutineProvider
 import com.appCraft.domain.interactor.films.GetTvShowByPageUseCase
+import com.appCraft.domain.model.TvShowModel
 import com.appCraft.testApp.Screens
 import com.appCraft.testApp.dispatcher.event.CustomEvent
 import com.appCraft.testApp.dispatcher.event.EventDispatcher
@@ -20,8 +21,6 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
     private val errorHandler: ErrorHandler by inject()
     private val notifier: Notifier by inject()
     private val getTvShowByPageUseCase: GetTvShowByPageUseCase by inject()
-
-    var currentPage = 1
 
     init {
         subscribeToEvents()
@@ -45,7 +44,7 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
         }
     }
 
-    fun navigateToDetailFragment(id: String) {
+    fun navigateToDetailFragment(id: Int) {
         viewState.routerForwardTo(Screens.Flow.detail(id))
     }
 
@@ -76,6 +75,10 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
     private fun onError(t: Throwable) {
         // viewState.hideProgress()
         errorHandler.proceed(t, false, notifier::sendAlert)
+    }
+
+    fun saveTvShow(tvShow: TvShowModel.TvShowX) {
+        
     }
 
 

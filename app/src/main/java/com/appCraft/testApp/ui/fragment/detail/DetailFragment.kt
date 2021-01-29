@@ -19,7 +19,7 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail), DetailView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
-            presenter.id = it.getString(ID, "")
+            presenter.id = it.getInt(ID)
         }
         presenter.getTvDetail()
     }

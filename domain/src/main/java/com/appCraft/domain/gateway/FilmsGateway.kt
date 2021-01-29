@@ -4,6 +4,7 @@ import com.appCraft.domain.model.TvDetailModel
 import com.appCraft.domain.model.TvShowModel
 
 interface FilmsGateway {
-    suspend fun getFilmByPage(page: Int) : TvShowModel
-    suspend fun getDetailById(id: String) : TvDetailModel
+    suspend fun getFilmByPage(page: Int): TvShowModel
+    suspend fun getDetailById(id: Int): TvDetailModel
+    suspend fun addTvShowToDB(id: TvShowModel.TvShowX)
 }

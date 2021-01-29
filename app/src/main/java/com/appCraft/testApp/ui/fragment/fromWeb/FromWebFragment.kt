@@ -38,6 +38,10 @@ class FromWebFragment : BaseFragment(R.layout.fragment_from_web), FromWebView, T
         presenter.navigateToDetailFragment(tvShow.id)
     }
 
+    override fun addFavorite(tvShow: TvShowModel.TvShowX) {
+        presenter.saveTvShow(tvShow)
+    }
+
     companion object {
         fun newInstance(): FromWebFragment {
             return FromWebFragment()

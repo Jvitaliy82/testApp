@@ -12,7 +12,7 @@ data class TvShowModel(
 ) : Parcelable {
     @Parcelize
     data class TvShowX(
-        val id: String,
+        val id: Int,
         val name: String,
         val start_date: String,
         val country: String,

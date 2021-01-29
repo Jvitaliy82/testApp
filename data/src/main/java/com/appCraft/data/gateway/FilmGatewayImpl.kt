@@ -12,7 +12,10 @@ class FilmGatewayImpl(
     override suspend fun getFilmByPage(page: Int) : TvShowModel =
         commonApi.getMostPopularTV(page)
 
-    override suspend fun getDetailById(id: String): TvDetailModel =
+    override suspend fun getDetailById(id: Int): TvDetailModel =
         commonApi.getDetails(id)
 
+    override suspend fun addTvShowToDB(id: TvShowModel.TvShowX) {
+        //todo add repository
+    }
 }

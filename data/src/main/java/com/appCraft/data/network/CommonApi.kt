@@ -19,6 +19,6 @@ interface CommonApi {
 
     @GET("show-details")
     suspend fun getDetails(
-        @Query("q") tvShowId: String,
+        @Query("q") tvShowId: Int,
     ): TvDetailModel
 }
