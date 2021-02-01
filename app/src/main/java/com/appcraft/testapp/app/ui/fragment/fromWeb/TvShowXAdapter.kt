@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.appcraft.domain.model.TvShowModel
+import com.appcraft.domain.model.TvShowItemMP
 import com.appcraft.testapp.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -14,7 +14,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kotlinx.android.synthetic.main.item_recycler.view.*
 
 
-class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<TvShowModel.TvShowX, TvShowXAdapter.TvShowXViewHolder>(
+class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<TvShowItemMP, TvShowXAdapter.TvShowXViewHolder>(
     DiffCallback()
 ) {
 
@@ -45,32 +45,32 @@ class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<Tv
             }
         }
 
-        fun bind(tvShowX: TvShowModel.TvShowX) {
+        fun bind(tvShowXModel: TvShowItemMP) {
             view.apply {
-                textName.text = tvShowX.name
-                textNetwork.text = tvShowX.network
-                textStarted.text = tvShowX.start_date
-                textStatus.text = tvShowX.status
+                textName.text = tvShowXModel.name
+                textNetwork.text = tvShowXModel.network
+                textStarted.text = tvShowXModel.start_date
+                textStatus.text = tvShowXModel.status
                 Glide
                     .with(this)
-                    .load(tvShowX.image_thumbnail_path)
+                    .load(tvShowXModel.image_thumbnail_path)
                     .transform(CenterCrop(), RoundedCorners(16))
                     .into(imageTVShow)
             }
         }
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<TvShowModel.TvShowX>() {
-        override fun areItemsTheSame(oldItem: TvShowModel.TvShowX, newItem: TvShowModel.TvShowX) =
+    class DiffCallback : DiffUtil.ItemCallback<TvShowItemMP>() {
+        override fun areItemsTheSame(oldItem: TvShowItemMP, newItem: TvShowItemMP) =
             oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: TvShowModel.TvShowX, newItem: TvShowModel.TvShowX) =
+        override fun areContentsTheSame(oldItem: TvShowItemMP, newItem: TvShowItemMP) =
             oldItem == newItem
 
     }
 
     interface OnItemClickListener {
-        fun onItemClick(tvShow: TvShowModel.TvShowX)
-        fun addFavorite(tvShow: TvShowModel.TvShowX)
+        fun onItemClick(tvShowModel: TvShowItemMP)
+        fun addFavorite(tvShowModel: TvShowItemMP)
     }
 }

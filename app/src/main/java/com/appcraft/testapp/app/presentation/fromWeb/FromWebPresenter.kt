@@ -3,7 +3,7 @@ package com.appcraft.testapp.app.presentation.fromWeb
 import android.util.Log
 import com.appcraft.domain.global.CoroutineProvider
 import com.appcraft.domain.interactor.films.GetTvShowByPageUseCase
-import com.appcraft.domain.model.TvShowModel
+import com.appcraft.domain.model.TvShowItemMP
 import com.appcraft.testapp.app.Screens
 import com.appcraft.testapp.app.dispatcher.event.CustomEvent
 import com.appcraft.testapp.app.dispatcher.event.EventDispatcher
@@ -30,7 +30,7 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
         coroutineProvider.scopeMain.launch {
             getTvShowByPageUseCase(page).process(
                 { result ->
-                    result.tv_shows?.let {
+                    result.tv_showModels?.let {
                         Log.d("M1", it.toString())
                         viewState.setListInAdapter(it)
                     }
@@ -77,7 +77,7 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
         errorHandler.proceed(t, false, notifier::sendAlert)
     }
 
-    fun saveTvShow(tvShow: TvShowModel.TvShowX) {
+    fun saveTvShow(tvShowModel: TvShowItemMP) {
         
     }
 

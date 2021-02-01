@@ -1,8 +1,8 @@
 package com.appcraft.data.network
 
 import com.appcraft.data.network.model.SampleModel
-import com.appcraft.domain.model.TvDetailModel
-import com.appcraft.domain.model.TvShowModel
+import com.appcraft.data.network.model.TvDetailModel
+import com.appcraft.data.network.model.TvShowMostPopularModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -15,7 +15,7 @@ interface CommonApi {
     @GET("most-popular")
     suspend fun getMostPopularTV(
         @Query("page") page: Int,
-    ): TvShowModel
+    ): TvShowMostPopularModel
 
     @GET("show-details")
     suspend fun getDetails(

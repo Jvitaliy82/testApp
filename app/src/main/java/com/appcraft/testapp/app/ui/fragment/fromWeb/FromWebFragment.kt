@@ -3,7 +3,7 @@ package com.appcraft.testapp.app.ui.fragment.fromWeb
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.appcraft.domain.model.TvShowModel
+import com.appcraft.domain.model.TvShowItemMP
 import com.appcraft.testapp.R
 import com.appcraft.testapp.app.global.ui.fragment.BaseFragment
 import com.appcraft.testapp.app.presentation.fromWeb.FromWebPresenter
@@ -33,16 +33,16 @@ class FromWebFragment : BaseFragment(R.layout.fragment_from_web), FromWebView,
         layoutManager = LinearLayoutManager(requireContext())
     }
 
-    override fun setListInAdapter(list: List<TvShowModel.TvShowX>) {
+    override fun setListInAdapter(list: List<TvShowItemMP>) {
         tvShowXAdapter.submitList(list)
     }
 
-    override fun onItemClick(tvShow: TvShowModel.TvShowX) {
-        presenter.navigateToDetailFragment(tvShow.id)
+    override fun onItemClick(tvShowModel: TvShowItemMP) {
+        presenter.navigateToDetailFragment(tvShowModel.id)
     }
 
-    override fun addFavorite(tvShow: TvShowModel.TvShowX) {
-        presenter.saveTvShow(tvShow)
+    override fun addFavorite(tvShowModel: TvShowItemMP) {
+        presenter.saveTvShow(tvShowModel)
     }
 
     companion object {

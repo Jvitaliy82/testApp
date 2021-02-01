@@ -1,10 +1,14 @@
 package com.appcraft.domain.gateway
 
-import com.appcraft.domain.model.TvDetailModel
-import com.appcraft.domain.model.TvShowModel
+import com.appcraft.domain.model.TvDetail
+import com.appcraft.domain.model.TvShowItemMP
+import com.appcraft.domain.model.TvShowMostPopular
 
 interface FilmsGateway {
-    suspend fun getFilmByPage(page: Int): TvShowModel
-    suspend fun getDetailById(id: Int): TvDetailModel
-    suspend fun addTvShowToDB(id: TvShowModel.TvShowX)
+
+    suspend fun getFilmByPage(page: Int): TvShowMostPopular
+
+    suspend fun getDetailById(id: Int): TvDetail
+
+    suspend fun addTvShowToDB(id: TvShowItemMP)
 }
