@@ -9,7 +9,12 @@ class TvShowRepositoryImpl(
     boxStore: BoxStore,
     private val context: Context
 ) : BaseRepository<TvShowItemMPEntity>(boxStore, TvShowItemMPEntity::class.java), TvShowRepository{
+
     override fun addTvShow(tvShowItemMPEntity: TvShowItemMPEntity) {
         box.put(tvShowItemMPEntity)
+    }
+
+    override fun getAllTvShow(): List<TvShowItemMPEntity> {
+       return box.all
     }
 }

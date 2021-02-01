@@ -6,4 +6,6 @@ import com.appcraft.data.storage.TvShowItemMPEntity
 interface TvShowRepository {
 
     fun addTvShow(tvShowItemMPEntity: TvShowItemMPEntity)
+
+    fun getAllTvShow() : List<TvShowItemMPEntity>
 }

@@ -4,6 +4,7 @@ import com.appcraft.data.network.CommonApi
 import com.appcraft.data.network.model.toTvDetail
 import com.appcraft.data.network.model.toTvShowMostPopular
 import com.appcraft.data.storage.repository.TvShowRepository
+import com.appcraft.data.storage.toTvShowItemMP
 import com.appcraft.data.storage.toTvShowMPEntity
 import com.appcraft.domain.gateway.FilmsGateway
 import com.appcraft.domain.model.TvDetail
@@ -24,4 +25,8 @@ class FilmGatewayImpl(
     override suspend fun addTvShowToDB(tvShowItemMP: TvShowItemMP) {
         tvShowRepository.addTvShow(tvShowItemMP.toTvShowMPEntity())
     }
+
+    override suspend fun getAllTvShowFromDB(): List<TvShowItemMP> =
+        tvShowRepository.getAllTvShow().map { it.toTvShowItemMP() }
+
 }

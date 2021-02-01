@@ -29,3 +29,15 @@ fun TvShowItemMP.toTvShowMPEntity(): TvShowItemMPEntity = TvShowItemMPEntity(
     image_thumbnail_path = this.image_thumbnail_path,
     permalink = this.permalink
 )
+
+fun TvShowItemMPEntity.toTvShowItemMP(): TvShowItemMP = TvShowItemMP(
+    uuid = this.uuid,
+    name = this.name,
+    start_date = this.start_date,
+    country = this.country,
+    network = this.network,
+    status = this.status,
+    end_date = this.end_date,
+    image_thumbnail_path = this.image_thumbnail_path,
+    permalink = this.permalink
+)

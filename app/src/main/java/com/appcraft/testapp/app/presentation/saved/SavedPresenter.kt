@@ -1,11 +1,13 @@
 package com.appcraft.testapp.app.presentation.saved
 
 import com.appcraft.domain.global.CoroutineProvider
+import com.appcraft.domain.interactor.films.GetAllTvShowMPUseCase
 import com.appcraft.testapp.app.dispatcher.event.CustomEvent
 import com.appcraft.testapp.app.dispatcher.event.EventDispatcher
 import com.appcraft.testapp.app.dispatcher.notifier.Notifier
 import com.appcraft.testapp.app.global.presentation.BasePresenter
 import com.appcraft.testapp.app.global.presentation.ErrorHandler
+import kotlinx.coroutines.launch
 import moxy.InjectViewState
 import org.koin.core.component.inject
 
@@ -15,29 +17,20 @@ class SavedPresenter : BasePresenter<SavedView>(), EventDispatcher.EventListener
     private val coroutineProvider: CoroutineProvider by inject()
     private val errorHandler: ErrorHandler by inject()
     private val notifier: Notifier by inject()
+    private val getAllTvShowMPUseCase: GetAllTvShowMPUseCase by inject()
 
 
     init {
         subscribeToEvents()
     }
 
-//    fun getTvShow(page: Int) {
-//        coroutineProvider.scopeMain.launch {
-//            getTvShowByPageUseCase(page).process(
-//                { result ->
-//                    result.tv_shows?.let {
-//                        Log.d("M1", it.toString())
-//                        viewState.setListInAdapter(it)
-//                    }
-//                },
-//                { error ->
-//                    errorHandler.proceed(error) {
-//                        notifier.sendMessage(it)
-//                    }
-//                }
-//            )
-//        }
-//    }
+    fun getAll() {
+        coroutineProvider.scopeMain.launch {
+            getAllTvShowMPUseCase().process({
+                viewState.setListInAdapter(it)
+            }, {})
+        }
+    }
 
     override fun onDestroy() {
         eventDispatcher.removeEventListener(this)

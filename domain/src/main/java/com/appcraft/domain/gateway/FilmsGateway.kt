@@ -11,4 +11,6 @@ interface FilmsGateway {
     suspend fun getDetailById(id: Long): TvDetail
 
     suspend fun addTvShowToDB(tvShowItemMP: TvShowItemMP)
+
+    suspend fun getAllTvShowFromDB() : List<TvShowItemMP>
 }
