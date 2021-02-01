@@ -9,5 +9,6 @@ val appComponent = listOf(
     interactorModule,
     apiModule,
     viewModelModule,
-    databaseModule
+    databaseModule,
+    storageModule
 )

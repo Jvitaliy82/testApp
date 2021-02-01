@@ -1,7 +1,9 @@
 package com.appcraft.data.storage.repository
 
+import com.appcraft.data.storage.TvShowItemMPEntity
+
 
 interface TvShowRepository {
 
-//    fun addTvShow(tvShowXModel: TvS)
+    fun addTvShow(tvShowItemMPEntity: TvShowItemMPEntity)
 }

@@ -10,6 +10,6 @@ import org.koin.dsl.module
 
 internal val gatewayModule = module {
     single<AuthGateway> { AuthGatewayImpl(get()) }
-    single<FilmsGateway> { FilmGatewayImpl(get()) }
+    single<FilmsGateway> { FilmGatewayImpl(get(), get()) }
     single<NotificationGateway> { NotificationGatewayImpl(get(), get()) }
 }

@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 
 class GetTvDetailByIdUseCase(
     private val filmsGateway: FilmsGateway
-) : UseCaseWithParams<Int, TvDetail>(Dispatchers.IO) {
-    override suspend fun execute(id: Int) : TvDetail =
+) : UseCaseWithParams<Long, TvDetail>(Dispatchers.IO) {
+    override suspend fun execute(id: Long) : TvDetail =
         filmsGateway.getDetailById(id)
 }

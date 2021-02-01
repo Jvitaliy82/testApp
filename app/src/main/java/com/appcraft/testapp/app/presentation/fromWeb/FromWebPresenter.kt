@@ -2,6 +2,7 @@ package com.appcraft.testapp.app.presentation.fromWeb
 
 import android.util.Log
 import com.appcraft.domain.global.CoroutineProvider
+import com.appcraft.domain.interactor.films.AddTvShowMPUseCase
 import com.appcraft.domain.interactor.films.GetTvShowByPageUseCase
 import com.appcraft.domain.model.TvShowItemMP
 import com.appcraft.testapp.app.Screens
@@ -21,6 +22,7 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
     private val errorHandler: ErrorHandler by inject()
     private val notifier: Notifier by inject()
     private val getTvShowByPageUseCase: GetTvShowByPageUseCase by inject()
+    private val addTvShowMPUseCase: AddTvShowMPUseCase by inject()
 
     init {
         subscribeToEvents()
@@ -44,7 +46,22 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
         }
     }
 
-    fun navigateToDetailFragment(id: Int) {
+    fun saveTvShow(tvShowModel: TvShowItemMP) {
+        coroutineProvider.scopeMain.launch {
+            addTvShowMPUseCase(tvShowModel).process(
+                //todo
+                {
+                    Log.d("M1", "успешно сохранили!!!")
+                },
+                {
+                    Log.d("M1", "что то не так: ${it.message}")
+                }
+            )
+        }
+
+    }
+
+    fun navigateToDetailFragment(id: Long) {
         viewState.routerForwardTo(Screens.Flow.detail(id))
     }
 
@@ -75,10 +92,6 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
     private fun onError(t: Throwable) {
         // viewState.hideProgress()
         errorHandler.proceed(t, false, notifier::sendAlert)
-    }
-
-    fun saveTvShow(tvShowModel: TvShowItemMP) {
-        
     }
 
 

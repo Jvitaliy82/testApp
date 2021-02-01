@@ -3,10 +3,12 @@ package com.appcraft.testapp.app
 import android.app.Application
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.appcraft.data.preference.Preferences
+import com.appcraft.testapp.app.db.ObjectBoxBrowser
 import com.appcraft.testapp.app.di.appComponent
 import com.appcraft.testapp.app.observer.AppLifecycleObserver
 import com.google.firebase.FirebaseApp
 import com.yariksoffice.lingver.Lingver
+import io.objectbox.BoxStore
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -17,6 +19,7 @@ import org.koin.core.logger.Level
 
 class App : Application() {
     private val appLifecycleObserver: AppLifecycleObserver by inject()
+    private val boxStore: BoxStore by inject()
     private val preferences: Preferences by inject()
 
     override fun onCreate() {
@@ -25,6 +28,7 @@ class App : Application() {
         initFirebase()
         initKoin()
         initLifecycleObserver()
+        initObjectBoxBrowser()
         initLanguage()
     }
 
@@ -60,5 +64,9 @@ class App : Application() {
 
     private fun initLanguage() {
         Lingver.init(this, preferences.language.get())
+    }
+
+    private fun initObjectBoxBrowser() {
+        ObjectBoxBrowser().init(boxStore, this)
     }
 }

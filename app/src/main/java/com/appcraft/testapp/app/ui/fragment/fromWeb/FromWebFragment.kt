@@ -38,7 +38,7 @@ class FromWebFragment : BaseFragment(R.layout.fragment_from_web), FromWebView,
     }
 
     override fun onItemClick(tvShowModel: TvShowItemMP) {
-        presenter.navigateToDetailFragment(tvShowModel.id)
+        presenter.navigateToDetailFragment(tvShowModel.uuid)
     }
 
     override fun addFavorite(tvShowModel: TvShowItemMP) {

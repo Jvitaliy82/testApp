@@ -21,7 +21,7 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail), DetailView {
         super.onViewCreated(view, savedInstanceState)
         container.addSystemWindowInsetToMargin(top = true, bottom = true)
         arguments?.let {
-            presenter.id = it.getInt(ID)
+            presenter.id = it.getLong(ID)
         }
         presenter.getTvDetail()
     }

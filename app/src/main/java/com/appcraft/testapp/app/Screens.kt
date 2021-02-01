@@ -27,8 +27,8 @@ object Screens {
         fun saved() = SavedFlowFragment::class.getFragmentScreen()
 
         fun detail(
-            id: Int? = null
-        ) = DetailFlowFragment::class.getFragmentScreen(DetailFragment.ID to id)
+            id: Long? = null
+        ) = DetailFlowFragment::class.getFragmentScreen(DetailFlowFragment.ID to id)
     }
 
     object Screen {
@@ -41,7 +41,7 @@ object Screens {
         fun saved() = SavedFragment::class.getFragmentScreen()
 
         fun detail(
-            id: Int? = null
+            id: Long? = null
         ) = DetailFragment::class.getFragmentScreen( DetailFragment.ID to id)
 
 //        fun cityPicker(

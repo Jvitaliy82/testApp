@@ -7,7 +7,7 @@ class DetailFlowFragment : FlowFragment() {
 
     override val launchScreen
         get() = Screens.Screen.detail(
-            arguments?.getInt(ID)
+            arguments?.getLong(ID)
         )
     companion object {
         const val ID = "ID"

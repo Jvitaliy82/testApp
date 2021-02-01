@@ -19,7 +19,7 @@ class DetailPresenter : BasePresenter<DetailView>(), EventDispatcher.EventListen
     private val notifier: Notifier by inject()
     private val getTvDetailByIdUseCase: GetTvDetailByIdUseCase by inject()
 
-    var id: Int = 0
+    var id: Long = 0
 
     init {
         subscribeToEvents()

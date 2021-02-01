@@ -43,17 +43,24 @@ class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<Tv
                     listener.onItemClick(tv)
                 }
             }
+            view.favorite.setOnClickListener {
+                val position = absoluteAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val tv = getItem(position)
+                    listener.addFavorite(tv)
+                }
+            }
         }
 
-        fun bind(tvShowXModel: TvShowItemMP) {
+        fun bind(tvShowItemMP: TvShowItemMP) {
             view.apply {
-                textName.text = tvShowXModel.name
-                textNetwork.text = tvShowXModel.network
-                textStarted.text = tvShowXModel.start_date
-                textStatus.text = tvShowXModel.status
+                textName.text = tvShowItemMP.name
+                textNetwork.text = tvShowItemMP.network
+                textStarted.text = tvShowItemMP.start_date
+                textStatus.text = tvShowItemMP.status
                 Glide
                     .with(this)
-                    .load(tvShowXModel.image_thumbnail_path)
+                    .load(tvShowItemMP.image_thumbnail_path)
                     .transform(CenterCrop(), RoundedCorners(16))
                     .into(imageTVShow)
             }
@@ -62,7 +69,7 @@ class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<Tv
 
     class DiffCallback : DiffUtil.ItemCallback<TvShowItemMP>() {
         override fun areItemsTheSame(oldItem: TvShowItemMP, newItem: TvShowItemMP) =
-            oldItem.id == newItem.id
+            oldItem.uuid == newItem.uuid
 
         override fun areContentsTheSame(oldItem: TvShowItemMP, newItem: TvShowItemMP) =
             oldItem == newItem
@@ -70,7 +77,7 @@ class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<Tv
     }
 
     interface OnItemClickListener {
-        fun onItemClick(tvShowModel: TvShowItemMP)
-        fun addFavorite(tvShowModel: TvShowItemMP)
+        fun onItemClick(tvShowItemMP: TvShowItemMP)
+        fun addFavorite(tvShowItemMP: TvShowItemMP)
     }
 }

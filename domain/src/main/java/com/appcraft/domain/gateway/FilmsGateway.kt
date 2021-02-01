@@ -8,7 +8,7 @@ interface FilmsGateway {
 
     suspend fun getFilmByPage(page: Int): TvShowMostPopular
 
-    suspend fun getDetailById(id: Int): TvDetail
+    suspend fun getDetailById(id: Long): TvDetail
 
-    suspend fun addTvShowToDB(id: TvShowItemMP)
+    suspend fun addTvShowToDB(tvShowItemMP: TvShowItemMP)
 }
