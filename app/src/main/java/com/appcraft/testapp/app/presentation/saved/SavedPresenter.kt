@@ -2,6 +2,7 @@ package com.appcraft.testapp.app.presentation.saved
 
 import com.appcraft.domain.global.CoroutineProvider
 import com.appcraft.domain.interactor.films.GetAllTvShowMPUseCase
+import com.appcraft.testapp.app.Screens
 import com.appcraft.testapp.app.dispatcher.event.CustomEvent
 import com.appcraft.testapp.app.dispatcher.event.EventDispatcher
 import com.appcraft.testapp.app.dispatcher.notifier.Notifier
@@ -59,6 +60,10 @@ class SavedPresenter : BasePresenter<SavedView>(), EventDispatcher.EventListener
     private fun onError(t: Throwable) {
         // viewState.hideProgress()
         errorHandler.proceed(t, false, notifier::sendAlert)
+    }
+
+    fun navigateToDetailFragment(id: Long) {
+        viewState.routerForwardTo(Screens.Flow.detail(id))
     }
 
 
