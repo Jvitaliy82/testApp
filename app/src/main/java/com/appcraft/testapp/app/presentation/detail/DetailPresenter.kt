@@ -1,7 +1,10 @@
 package com.appcraft.testapp.app.presentation.detail
 
+import android.util.Log
 import com.appcraft.domain.global.CoroutineProvider
+import com.appcraft.domain.interactor.films.AddTvShowMPUseCase
 import com.appcraft.domain.interactor.films.GetTvDetailByIdUseCase
+import com.appcraft.domain.model.TvShowItemMP
 import com.appcraft.testapp.app.dispatcher.event.CustomEvent
 import com.appcraft.testapp.app.dispatcher.event.EventDispatcher
 import com.appcraft.testapp.app.dispatcher.notifier.Notifier
@@ -18,8 +21,9 @@ class DetailPresenter : BasePresenter<DetailView>(), EventDispatcher.EventListen
     private val errorHandler: ErrorHandler by inject()
     private val notifier: Notifier by inject()
     private val getTvDetailByIdUseCase: GetTvDetailByIdUseCase by inject()
+    private val addTvShowMPUseCase: AddTvShowMPUseCase by inject()
 
-    var id: Long = 0
+    var currentItem: TvShowItemMP? = null
 
     init {
         subscribeToEvents()
@@ -27,19 +31,38 @@ class DetailPresenter : BasePresenter<DetailView>(), EventDispatcher.EventListen
 
 
     fun getTvDetail() {
-        coroutineProvider.scopeMain.launch {
-            getTvDetailByIdUseCase(id).process(
-                { result ->
-                    result?.let {
-                        viewState.setData(it)
+        currentItem?.let {
+            coroutineProvider.scopeMain.launch {
+                getTvDetailByIdUseCase(it.uuid).process(
+                    { result ->
+                        result?.let {
+                            viewState.setData(it)
+                        }
+                    },
+                    { error ->
+                        errorHandler.proceed(error) {
+                            notifier.sendMessage(it)
+                        }
                     }
-                },
-                { error ->
-                    errorHandler.proceed(error) {
-                        notifier.sendMessage(it)
+                )
+            }
+        }
+
+    }
+
+    fun saveCurrent() {
+        currentItem?.let { item ->
+            coroutineProvider.scopeMain.launch {
+                addTvShowMPUseCase(item).process(
+                    //todo
+                    {
+                        Log.d("M1", "успешно сохранили!!!")
+                    },
+                    {
+                        Log.d("M1", "что то не так: ${it.message}")
                     }
-                }
-            )
+                )
+            }
         }
     }
 
