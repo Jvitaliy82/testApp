@@ -1,6 +1,7 @@
 package com.appcraft.domain.model
 
 data class TvShowItemMP(
+    val id: Long = 0,
     val uuid: Long,
     val name: String,
     val start_date: String,

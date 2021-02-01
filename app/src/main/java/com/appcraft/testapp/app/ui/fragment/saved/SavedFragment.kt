@@ -41,8 +41,8 @@ class SavedFragment: BaseFragment(R.layout.fragment_saved), SavedView, TvShowXAd
         presenter.navigateToDetailFragment(tvShowItemMP.uuid)
     }
 
-    override fun addFavorite(tvShowItemMP: TvShowItemMP) {
-        //no action
+    override fun onFavoriteClick(tvShowItemMP: TvShowItemMP) {
+        presenter.deleteItem(tvShowItemMP)
     }
 
     override fun setListInAdapter(list: List<TvShowItemMP>) {

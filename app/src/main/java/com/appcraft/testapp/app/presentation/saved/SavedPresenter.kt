@@ -1,7 +1,9 @@
 package com.appcraft.testapp.app.presentation.saved
 
 import com.appcraft.domain.global.CoroutineProvider
+import com.appcraft.domain.interactor.films.DeleteItemUseCase
 import com.appcraft.domain.interactor.films.GetAllTvShowMPUseCase
+import com.appcraft.domain.model.TvShowItemMP
 import com.appcraft.testapp.app.Screens
 import com.appcraft.testapp.app.dispatcher.event.CustomEvent
 import com.appcraft.testapp.app.dispatcher.event.EventDispatcher
@@ -19,6 +21,7 @@ class SavedPresenter : BasePresenter<SavedView>(), EventDispatcher.EventListener
     private val errorHandler: ErrorHandler by inject()
     private val notifier: Notifier by inject()
     private val getAllTvShowMPUseCase: GetAllTvShowMPUseCase by inject()
+    private val deleteItemUseCase: DeleteItemUseCase by inject()
 
 
     init {
@@ -31,6 +34,15 @@ class SavedPresenter : BasePresenter<SavedView>(), EventDispatcher.EventListener
                 viewState.setListInAdapter(it)
             }, {})
         }
+    }
+
+    fun deleteItem(tvShowItemMP: TvShowItemMP) {
+        coroutineProvider.scopeMain.launch {
+            deleteItemUseCase(tvShowItemMP).process({
+                getAll()
+            }, {})
+        }
+
     }
 
     override fun onDestroy() {
@@ -65,6 +77,8 @@ class SavedPresenter : BasePresenter<SavedView>(), EventDispatcher.EventListener
     fun navigateToDetailFragment(id: Long) {
         viewState.routerForwardTo(Screens.Flow.detail(id))
     }
+
+
 
 
 //    private fun tryContinue() {

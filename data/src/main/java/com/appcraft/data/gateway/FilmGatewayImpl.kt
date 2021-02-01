@@ -29,4 +29,7 @@ class FilmGatewayImpl(
     override suspend fun getAllTvShowFromDB(): List<TvShowItemMP> =
         tvShowRepository.getAllTvShow().map { it.toTvShowItemMP() }
 
+    override suspend fun deleteItemFromDB(tvShowItemMP: TvShowItemMP) {
+        tvShowRepository.deleteItem(tvShowItemMP.toTvShowMPEntity())
+    }
 }

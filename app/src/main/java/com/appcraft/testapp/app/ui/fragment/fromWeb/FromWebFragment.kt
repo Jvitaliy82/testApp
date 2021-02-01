@@ -41,7 +41,7 @@ class FromWebFragment : BaseFragment(R.layout.fragment_from_web), FromWebView,
         presenter.navigateToDetailFragment(tvShowModel.uuid)
     }
 
-    override fun addFavorite(tvShowModel: TvShowItemMP) {
+    override fun onFavoriteClick(tvShowModel: TvShowItemMP) {
         presenter.saveTvShow(tvShowModel)
     }
 

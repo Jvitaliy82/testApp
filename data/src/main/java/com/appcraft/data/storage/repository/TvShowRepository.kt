@@ -8,4 +8,6 @@ interface TvShowRepository {
     fun addTvShow(tvShowItemMPEntity: TvShowItemMPEntity)
 
     fun getAllTvShow() : List<TvShowItemMPEntity>
+
+    fun deleteItem(tvShowItemMPEntity: TvShowItemMPEntity)
 }

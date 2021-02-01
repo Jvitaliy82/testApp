@@ -13,4 +13,7 @@ interface FilmsGateway {
     suspend fun addTvShowToDB(tvShowItemMP: TvShowItemMP)
 
     suspend fun getAllTvShowFromDB() : List<TvShowItemMP>
+
+    suspend fun deleteItemFromDB(tvShowItemMP: TvShowItemMP)
+
 }

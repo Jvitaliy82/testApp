@@ -17,4 +17,8 @@ class TvShowRepositoryImpl(
     override fun getAllTvShow(): List<TvShowItemMPEntity> {
        return box.all
     }
+
+    override fun deleteItem(tvShowItemMPEntity: TvShowItemMPEntity) {
+        box.remove(tvShowItemMPEntity)
+    }
 }

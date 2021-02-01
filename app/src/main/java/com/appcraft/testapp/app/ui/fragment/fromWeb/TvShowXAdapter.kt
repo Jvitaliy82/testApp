@@ -47,7 +47,7 @@ class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<Tv
                 val position = absoluteAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val tv = getItem(position)
-                    listener.addFavorite(tv)
+                    listener.onFavoriteClick(tv)
                 }
             }
         }
@@ -78,6 +78,6 @@ class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<Tv
 
     interface OnItemClickListener {
         fun onItemClick(tvShowItemMP: TvShowItemMP)
-        fun addFavorite(tvShowItemMP: TvShowItemMP)
+        fun onFavoriteClick(tvShowItemMP: TvShowItemMP)
     }
 }

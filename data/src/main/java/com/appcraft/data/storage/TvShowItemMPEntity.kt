@@ -19,6 +19,7 @@ data class TvShowItemMPEntity(
 )
 
 fun TvShowItemMP.toTvShowMPEntity(): TvShowItemMPEntity = TvShowItemMPEntity(
+    id = this.id,
     uuid = this.uuid,
     name = this.name,
     start_date = this.start_date,
@@ -31,6 +32,7 @@ fun TvShowItemMP.toTvShowMPEntity(): TvShowItemMPEntity = TvShowItemMPEntity(
 )
 
 fun TvShowItemMPEntity.toTvShowItemMP(): TvShowItemMP = TvShowItemMP(
+    id = this.id,
     uuid = this.uuid,
     name = this.name,
     start_date = this.start_date,
