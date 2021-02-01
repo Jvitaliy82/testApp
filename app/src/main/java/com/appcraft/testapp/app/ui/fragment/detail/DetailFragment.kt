@@ -3,6 +3,7 @@ package com.appcraft.testapp.app.ui.fragment.detail
 import android.os.Bundle
 import android.view.View
 import com.appcraft.domain.model.TvDetail
+import com.appcraft.domain.model.TvShowItemMP
 import com.appcraft.testapp.R
 import com.appcraft.testapp.app.global.ui.fragment.BaseFragment
 import com.appcraft.testapp.app.presentation.detail.DetailPresenter
@@ -21,7 +22,8 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail), DetailView {
         super.onViewCreated(view, savedInstanceState)
         container.addSystemWindowInsetToMargin(top = true, bottom = true)
         arguments?.let {
-            presenter.id = it.getLong(ID)
+            presenter.id = it.getParcelable<TvShowItemMP>(ID)!!.uuid
+
         }
         presenter.getTvDetail()
     }

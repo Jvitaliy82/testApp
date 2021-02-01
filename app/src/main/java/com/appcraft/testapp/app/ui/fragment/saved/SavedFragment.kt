@@ -38,7 +38,7 @@ class SavedFragment: BaseFragment(R.layout.fragment_saved), SavedView, TvShowXAd
     }
 
     override fun onItemClick(tvShowItemMP: TvShowItemMP) {
-        presenter.navigateToDetailFragment(tvShowItemMP.uuid)
+        presenter.navigateToDetailFragment(tvShowItemMP)
     }
 
     override fun onFavoriteClick(tvShowItemMP: TvShowItemMP) {

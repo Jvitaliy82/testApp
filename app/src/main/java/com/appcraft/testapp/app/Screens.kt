@@ -2,6 +2,7 @@ package com.appcraft.testapp.app
 
 import android.content.Intent
 import android.net.Uri
+import com.appcraft.domain.model.TvShowItemMP
 import com.appcraft.testapp.R
 import com.appcraft.testapp.app.ui.fragment.detail.DetailFlowFragment
 import com.appcraft.testapp.app.ui.fragment.detail.DetailFragment
@@ -27,8 +28,8 @@ object Screens {
         fun saved() = SavedFlowFragment::class.getFragmentScreen()
 
         fun detail(
-            id: Long? = null
-        ) = DetailFlowFragment::class.getFragmentScreen(DetailFlowFragment.ID to id)
+            item: TvShowItemMP? = null
+        ) = DetailFlowFragment::class.getFragmentScreen(DetailFlowFragment.ID to item)
     }
 
     object Screen {
@@ -41,14 +42,9 @@ object Screens {
         fun saved() = SavedFragment::class.getFragmentScreen()
 
         fun detail(
-            id: Long? = null
-        ) = DetailFragment::class.getFragmentScreen( DetailFragment.ID to id)
+            item: TvShowItemMP? = null
+        ) = DetailFragment::class.getFragmentScreen( DetailFragment.ID to item)
 
-//        fun cityPicker(
-//            requestId: Long
-//        ) = CityPickerFragment::class.getFragmentScreen(
-//            CityPickerFragment.REQUEST_ID to requestId
-//        )
     }
 
     // COMMON ACTIONS

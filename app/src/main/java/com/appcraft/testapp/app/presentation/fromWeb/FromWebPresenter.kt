@@ -61,8 +61,8 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
 
     }
 
-    fun navigateToDetailFragment(id: Long) {
-        viewState.routerForwardTo(Screens.Flow.detail(id))
+    fun navigateToDetailFragment(item: TvShowItemMP) {
+        viewState.routerForwardTo(Screens.Flow.detail(item))
     }
 
     override fun onDestroy() {

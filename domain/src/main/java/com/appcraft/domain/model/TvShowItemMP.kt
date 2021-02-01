@@ -1,5 +1,9 @@
 package com.appcraft.domain.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class TvShowItemMP(
     val id: Long = 0,
     val uuid: Long,
@@ -11,4 +15,4 @@ data class TvShowItemMP(
     val end_date: String,
     val image_thumbnail_path: String,
     val permalink: String
-)
+) : Parcelable
