@@ -4,12 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/_4sdp">
+    android:padding="4dp">
 
     <View
         android:id="@+id/viewSupported"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_10sdp"
+        android:layout_height="10dp"
         app:layout_constraintTop_toBottomOf="@id/imageTVShow" />
 
     <View
@@ -23,9 +23,9 @@
 
     <ImageView
         android:id="@+id/imageTVShow"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_100sdp"
-        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="10dp"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,13 +34,13 @@
         android:id="@+id/textName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         android:includeFontPadding="false"
-        android:paddingTop="@dimen/_8sdp"
+        android:paddingTop="8dp"
         android:textColor="@color/colorTextPrimary"
-        android:textSize="@dimen/_13ssp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@id/favorite"
         app:layout_constraintStart_toEndOf="@id/imageTVShow"
         app:layout_constraintTop_toTopOf="@id/imageTVShow" />
@@ -51,17 +51,17 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_favorite"
         app:layout_constraintEnd_toEndOf="@id/viewBackground"
-        android:layout_marginEnd="@dimen/_4sdp"
-        app:layout_constraintBottom_toBottomOf="@id/textName"/>
+        android:layout_margin="4dp"
+        app:layout_constraintTop_toTopOf="@id/viewBackground"/>
 
     <TextView
         android:id="@+id/textNetwork"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_marginTop="3dp"
         android:includeFontPadding="false"
         android:textColor="@color/colorTextOther"
-        android:textSize="@dimen/_12sdp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@id/textName"
         app:layout_constraintStart_toStartOf="@id/textName"
         app:layout_constraintTop_toBottomOf="@id/textName" />
@@ -70,10 +70,10 @@
         android:id="@+id/textStarted"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_marginTop="3dp"
         android:includeFontPadding="false"
         android:textColor="@color/colorTextSecondary"
-        android:textSize="@dimen/_12sdp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@id/textName"
         app:layout_constraintStart_toStartOf="@id/textName"
         app:layout_constraintTop_toBottomOf="@id/textNetwork" />
@@ -82,10 +82,10 @@
         android:id="@+id/textStatus"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_marginTop="3dp"
         android:includeFontPadding="false"
         android:textColor="@android:color/holo_green_light"
-        android:textSize="@dimen/_12sdp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@id/textName"
         app:layout_constraintStart_toStartOf="@id/textName"
         app:layout_constraintTop_toBottomOf="@id/textStarted" />

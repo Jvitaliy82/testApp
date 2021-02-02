@@ -187,10 +187,6 @@ dependencies {
     // Language
     implementation "com.github.YarikSOffice:lingver:1.3.0"
 
-    //Scalable size unit
-    implementation 'com.intuit.sdp:sdp-android:1.0.6'
-    implementation 'com.intuit.ssp:ssp-android:1.0.6'
-
     //Rounded image View
     implementation 'com.makeramen:roundedimageview:2.3.0'
 }
