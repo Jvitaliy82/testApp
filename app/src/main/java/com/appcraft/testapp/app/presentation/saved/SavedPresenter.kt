@@ -75,7 +75,7 @@ class SavedPresenter : BasePresenter<SavedView>(), EventDispatcher.EventListener
     }
 
     fun navigateToDetailFragment(item: TvShowItemMP) {
-        viewState.routerForwardTo(Screens.Flow.detail(item))
+        viewState.routerForwardTo(Screens.Flow.detail(item, true))
     }
 
 

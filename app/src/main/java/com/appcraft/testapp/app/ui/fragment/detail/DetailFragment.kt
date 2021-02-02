@@ -2,6 +2,7 @@ package com.appcraft.testapp.app.ui.fragment.detail
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import com.appcraft.domain.model.TvDetail
 import com.appcraft.testapp.R
 import com.appcraft.testapp.app.global.ui.fragment.BaseFragment
@@ -20,10 +21,13 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail), DetailView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         container.addSystemWindowInsetToMargin(top = true, bottom = true)
-        arguments?.let {
-            presenter.currentItem = it.getParcelable(ID)
+        presenter.setParams(
+            arguments?.getParcelable(ID)!!,
+            arguments?.getBoolean(FROM_SAVE)!!
+        )
 
-        }
+        save_button.isVisible = !presenter.fromSave
+
         presenter.getTvDetail()
         save_button.setOnClickListener {
             presenter.saveCurrent()
@@ -43,6 +47,7 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail), DetailView {
 
     companion object {
         const val ID = "ID"
+        const val FROM_SAVE = "FROM_SAVE"
     }
 
 }

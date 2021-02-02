@@ -53,4 +53,5 @@
     <color name="colorTextOther">#FAD303</color>
     <color name="colorTextSecondary">#4A5B82</color>
     <color name="colorPrimaryLight_t">#222B4E</color>
+    <color name="colorBackgroundSave">#24336E</color>
 </resources>

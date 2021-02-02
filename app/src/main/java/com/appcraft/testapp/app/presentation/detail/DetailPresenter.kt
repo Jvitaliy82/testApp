@@ -24,6 +24,7 @@ class DetailPresenter : BasePresenter<DetailView>(), EventDispatcher.EventListen
     private val addTvShowMPUseCase: AddTvShowMPUseCase by inject()
 
     var currentItem: TvShowItemMP? = null
+    var fromSave: Boolean = false
 
     init {
         subscribeToEvents()
@@ -93,6 +94,14 @@ class DetailPresenter : BasePresenter<DetailView>(), EventDispatcher.EventListen
     private fun onError(t: Throwable) {
         // viewState.hideProgress()
         errorHandler.proceed(t, false, notifier::sendAlert)
+    }
+
+    fun setParams(
+        currentItem: TvShowItemMP,
+        fromSave: Boolean
+    ) {
+        this.currentItem = currentItem
+        this.fromSave = fromSave
     }
 
 

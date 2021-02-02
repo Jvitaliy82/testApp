@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorYellowA80">
+    android:background="@color/colorBackgroundSave">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
