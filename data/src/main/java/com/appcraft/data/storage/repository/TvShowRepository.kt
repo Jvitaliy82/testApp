@@ -9,5 +9,7 @@ interface TvShowRepository {
 
     fun getAllTvShow() : List<TvShowItemMPEntity>
 
+    fun getTvShowByName(name: String) : List<TvShowItemMPEntity>
+
     fun deleteItem(tvShowItemMPEntity: TvShowItemMPEntity)
 }
