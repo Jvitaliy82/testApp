@@ -20,11 +20,9 @@ object Screens {
         fun main() = MainFlowFragment::class.getFragmentScreen()
 
         fun detail(
-            item: TvShowItemMP,
-            from_save: Boolean = false
+            item: TvShowItemMP
         ) = DetailFlowFragment::class.getFragmentScreen(
-            DetailFlowFragment.ID to item,
-            DetailFlowFragment.FROM_SAVE to from_save
+            DetailFlowFragment.ID to item
         )
     }
 
@@ -34,11 +32,9 @@ object Screens {
         fun main() = MainFragment::class.getFragmentScreen()
 
         fun detail(
-            item: TvShowItemMP,
-            from_save: Boolean = false
+            item: TvShowItemMP
         ) = DetailFragment::class.getFragmentScreen(
-            DetailFragment.ID to item,
-            DetailFragment.FROM_SAVE to from_save
+            DetailFragment.ID to item
         )
 
     }

@@ -4,6 +4,7 @@ import android.util.Log
 import com.appcraft.domain.global.CoroutineProvider
 import com.appcraft.domain.interactor.films.AddTvShowMPUseCase
 import com.appcraft.domain.interactor.films.GetTvDetailByIdUseCase
+import com.appcraft.domain.interactor.films.GetTvShowMPByNameUseCase
 import com.appcraft.domain.model.TvShowItemMP
 import com.appcraft.testapp.app.dispatcher.event.CustomEvent
 import com.appcraft.testapp.app.dispatcher.event.EventDispatcher
@@ -22,9 +23,23 @@ class DetailPresenter : BasePresenter<DetailView>(), EventDispatcher.EventListen
     private val notifier: Notifier by inject()
     private val getTvDetailByIdUseCase: GetTvDetailByIdUseCase by inject()
     private val addTvShowMPUseCase: AddTvShowMPUseCase by inject()
+    private val getTvShowMPByNameUseCase: GetTvShowMPByNameUseCase by inject()
 
     var currentItem: TvShowItemMP? = null
-    var fromSave: Boolean = false
+    set(value) {
+        field = value
+        value?.let {
+            coroutineProvider.scopeMain.launch {
+                getTvShowMPByNameUseCase(it.name).process({ list ->
+                    if (list.isNotEmpty()) {
+                        viewState.visibleSaveButton(false)
+                    } else {
+                        viewState.visibleSaveButton(true)
+                    }
+                }, {})
+            }
+        }
+    }
 
     init {
         subscribeToEvents()
@@ -57,7 +72,7 @@ class DetailPresenter : BasePresenter<DetailView>(), EventDispatcher.EventListen
                 addTvShowMPUseCase(item).process(
                     //todo
                     {
-                        Log.d("M1", "успешно сохранили!!!")
+                        viewState.visibleSaveButton(false)
                     },
                     {
                         Log.d("M1", "что то не так: ${it.message}")
@@ -97,11 +112,9 @@ class DetailPresenter : BasePresenter<DetailView>(), EventDispatcher.EventListen
     }
 
     fun setParams(
-        currentItem: TvShowItemMP,
-        fromSave: Boolean
+        currentItem: TvShowItemMP
     ) {
         this.currentItem = currentItem
-        this.fromSave = fromSave
     }
 
 

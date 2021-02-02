@@ -25,11 +25,8 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail), DetailView {
         super.onViewCreated(view, savedInstanceState)
         container.addSystemWindowInsetToMargin(top = true, bottom = true)
         presenter.setParams(
-            arguments?.getParcelable(ID)!!,
-            arguments?.getBoolean(FROM_SAVE)!!
+            arguments?.getParcelable(ID)!!
         )
-
-        save_button.isVisible = !presenter.fromSave
 
         presenter.getTvDetail()
         save_button.setOnClickListener {
@@ -48,9 +45,12 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail), DetailView {
         textDescription.text = tvDetail.tvShow.description
     }
 
+    override fun visibleSaveButton(isVisible: Boolean) {
+        save_button.isVisible = isVisible
+    }
+
     companion object {
         const val ID = "ID"
-        const val FROM_SAVE = "FROM_SAVE"
     }
 
 }

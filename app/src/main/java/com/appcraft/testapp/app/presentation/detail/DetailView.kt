@@ -10,4 +10,6 @@ interface DetailView : NavigationMvpView {
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun setData(tvDetail: TvDetail)
 
+    @StateStrategyType(AddToEndSingleStrategy::class)
+    fun visibleSaveButton(isVisible: Boolean)
 }

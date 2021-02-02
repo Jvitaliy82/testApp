@@ -28,6 +28,10 @@ class FilmGatewayImpl(
         }
     }
 
+    override suspend fun getTvShowByNameFromDB(name: String): List<TvShowItemMP> =
+        tvShowRepository.getTvShowByName(name).map { it.toTvShowItemMP() }
+
+
     override suspend fun getAllTvShowFromDB(): List<TvShowItemMP> =
         tvShowRepository.getAllTvShow().map { it.toTvShowItemMP() }
 

@@ -7,11 +7,9 @@ class DetailFlowFragment : FlowFragment() {
 
     override val launchScreen
         get() = Screens.Screen.detail(
-            arguments?.getParcelable(ID)!!,
-            arguments?.getBoolean(FROM_SAVE)!!
+            arguments?.getParcelable(ID)!!
         )
     companion object {
         const val ID = "ID"
-        const val FROM_SAVE = "FROM_SAVE"
     }
 }
