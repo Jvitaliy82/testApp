@@ -12,7 +12,7 @@ interface FilmsGateway {
 
     suspend fun addTvShowToDB(tvShowItemMP: TvShowItemMP)
 
-    suspend fun getTvShowByNameFromDB(name: String) : List<TvShowItemMP>
+    suspend fun getTvShowByIdFromDB(id: Long) :TvShowItemMP?
 
     suspend fun getAllTvShowFromDB() : List<TvShowItemMP>
 

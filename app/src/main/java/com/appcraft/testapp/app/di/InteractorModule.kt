@@ -15,6 +15,6 @@ internal val interactorModule = module {
     single { AddTvShowMPUseCase(get()) }
     single { GetAllTvShowMPUseCase(get()) }
     single { DeleteItemUseCase(get()) }
-    single { GetTvShowMPByNameUseCase(get()) }
+    single { GetTvShowMPByIdFromDbUseCase(get()) }
 
 }

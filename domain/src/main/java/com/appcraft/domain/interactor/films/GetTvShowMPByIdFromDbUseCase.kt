@@ -5,9 +5,9 @@ import com.appcraft.domain.global.interactor.UseCaseWithParams
 import com.appcraft.domain.model.TvShowItemMP
 import kotlinx.coroutines.Dispatchers
 
-class GetTvShowMPByNameUseCase(
+class GetTvShowMPByIdFromDbUseCase(
     private val filmsGateway: FilmsGateway
-) : UseCaseWithParams<String, List<TvShowItemMP>>(Dispatchers.IO) {
-    override suspend fun execute(name: String) =
-        filmsGateway.getTvShowByNameFromDB(name)
+) : UseCaseWithParams<Long, TvShowItemMP?>(Dispatchers.IO) {
+    override suspend fun execute(id: Long) =
+        filmsGateway.getTvShowByIdFromDB(id)
 }

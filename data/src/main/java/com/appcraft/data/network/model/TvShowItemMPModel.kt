@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class TvShowItemMPModel(
-    @SerializedName("id") val uuid: Long,
+    @SerializedName("id") val id: Long,
     @SerializedName("name") val name: String,
     @SerializedName("start_date") val startDate: String,
     @SerializedName("country") val country: String,
@@ -19,7 +19,7 @@ data class TvShowItemMPModel(
 ): Parcelable
 
 fun TvShowItemMPModel.toTvShowItemMP() = TvShowItemMP(
-    uuid = this.uuid,
+    id = this.id,
     name = this.name,
     startDate = this.startDate,
     country = this.country,

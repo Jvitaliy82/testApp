@@ -10,14 +10,14 @@ data class TvShowMostPopularModel(
     @SerializedName("page") val page: Int,
     @SerializedName("pages") val pages: Int,
     @SerializedName("total") val total: Int,
-    @SerializedName("tv_shows") val tvShowmodels: List<TvShowItemMPModel>
+    @SerializedName("tv_shows") val tvShowModels: List<TvShowItemMPModel>
 ) : Parcelable
 
 fun TvShowMostPopularModel.toTvShowMostPopular() = TvShowMostPopular(
     page = this.page,
     pages = this.pages,
     total = this.total,
-    tvShowModels = this.tvShowmodels.map { it.toTvShowItemMP() }
+    tvShowModels = this.tvShowModels.map { it.toTvShowItemMP() }
 )
 
 

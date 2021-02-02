@@ -69,7 +69,7 @@ class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<Tv
 
     class DiffCallback : DiffUtil.ItemCallback<TvShowItemMP>() {
         override fun areItemsTheSame(oldItem: TvShowItemMP, newItem: TvShowItemMP) =
-            oldItem.uuid == newItem.uuid
+            oldItem.id == newItem.id
 
         override fun areContentsTheSame(oldItem: TvShowItemMP, newItem: TvShowItemMP) =
             oldItem == newItem

@@ -5,8 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class TvShowItemMP(
-    val id: Long = 0,
-    val uuid: Long,
+    val id: Long,
     val name: String,
     val startDate: String,
     val country: String,

@@ -6,8 +6,7 @@ import io.objectbox.annotation.Id
 
 @Entity
 data class TvShowItemMPEntity(
-    @Id var id: Long = 0,
-    var uuid: Long,
+    @Id(assignable = true) var id: Long = 0,
     var name: String,
     var startDate: String,
     var country: String,
@@ -20,7 +19,6 @@ data class TvShowItemMPEntity(
 
 fun TvShowItemMP.toTvShowMPEntity(): TvShowItemMPEntity = TvShowItemMPEntity(
     id = this.id,
-    uuid = this.uuid,
     name = this.name,
     startDate = this.startDate,
     country = this.country,
@@ -33,7 +31,6 @@ fun TvShowItemMP.toTvShowMPEntity(): TvShowItemMPEntity = TvShowItemMPEntity(
 
 fun TvShowItemMPEntity.toTvShowItemMP(): TvShowItemMP = TvShowItemMP(
     id = this.id,
-    uuid = this.uuid,
     name = this.name,
     startDate = this.startDate,
     country = this.country,

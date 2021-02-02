@@ -4,7 +4,7 @@ import android.util.Log
 import com.appcraft.domain.global.CoroutineProvider
 import com.appcraft.domain.interactor.films.AddTvShowMPUseCase
 import com.appcraft.domain.interactor.films.GetTvDetailByIdUseCase
-import com.appcraft.domain.interactor.films.GetTvShowMPByNameUseCase
+import com.appcraft.domain.interactor.films.GetTvShowMPByIdFromDbUseCase
 import com.appcraft.domain.model.TvShowItemMP
 import com.appcraft.testapp.app.dispatcher.event.CustomEvent
 import com.appcraft.testapp.app.dispatcher.event.EventDispatcher
@@ -23,15 +23,15 @@ class DetailPresenter : BasePresenter<DetailView>(), EventDispatcher.EventListen
     private val notifier: Notifier by inject()
     private val getTvDetailByIdUseCase: GetTvDetailByIdUseCase by inject()
     private val addTvShowMPUseCase: AddTvShowMPUseCase by inject()
-    private val getTvShowMPByNameUseCase: GetTvShowMPByNameUseCase by inject()
+    private val getTvShowMPByIdFromDbUseCase: GetTvShowMPByIdFromDbUseCase by inject()
 
     var currentItem: TvShowItemMP? = null
     set(value) {
         field = value
-        value?.let {
+        value?.let { item ->
             coroutineProvider.scopeMain.launch {
-                getTvShowMPByNameUseCase(it.name).process({ list ->
-                    if (list.isNotEmpty()) {
+                getTvShowMPByIdFromDbUseCase(item.id).process({ result ->
+                    if (result != null) {
                         viewState.visibleSaveButton(false)
                     } else {
                         viewState.visibleSaveButton(true)
@@ -49,7 +49,7 @@ class DetailPresenter : BasePresenter<DetailView>(), EventDispatcher.EventListen
     fun getTvDetail() {
         currentItem?.let {
             coroutineProvider.scopeMain.launch {
-                getTvDetailByIdUseCase(it.uuid).process(
+                getTvDetailByIdUseCase(it.id).process(
                     { result ->
                         result?.let {
                             viewState.setData(it)

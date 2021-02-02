@@ -3,7 +3,6 @@ package com.appcraft.data.storage.repository
 import android.content.Context
 import com.appcraft.data.global.BaseRepository
 import com.appcraft.data.storage.TvShowItemMPEntity
-import com.appcraft.data.storage.TvShowItemMPEntity_
 import io.objectbox.BoxStore
 
 class TvShowRepositoryImpl(
@@ -19,8 +18,8 @@ class TvShowRepositoryImpl(
        return box.all
     }
 
-    override fun getTvShowByName(name: String): List<TvShowItemMPEntity> {
-        return box.query().equal(TvShowItemMPEntity_.name, name).build().find()
+    override fun getTvShowById(id: Long): TvShowItemMPEntity? {
+        return box.get(id)
     }
 
     override fun deleteItem(tvShowItemMPEntity: TvShowItemMPEntity) {

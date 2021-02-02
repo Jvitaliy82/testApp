@@ -23,13 +23,13 @@ class FilmGatewayImpl(
         commonApi.getDetails(id).toTvDetailItem()
 
     override suspend fun addTvShowToDB(tvShowItemMP: TvShowItemMP) {
-        if (tvShowRepository.getTvShowByName(tvShowItemMP.name).isEmpty()) {
+        if (tvShowRepository.getTvShowById(tvShowItemMP.id) == null) {
             tvShowRepository.addTvShow(tvShowItemMP.toTvShowMPEntity())
         }
     }
 
-    override suspend fun getTvShowByNameFromDB(name: String): List<TvShowItemMP> =
-        tvShowRepository.getTvShowByName(name).map { it.toTvShowItemMP() }
+    override suspend fun getTvShowByIdFromDB(id: Long): TvShowItemMP? =
+        tvShowRepository.getTvShowById(id)?.toTvShowItemMP()
 
 
     override suspend fun getAllTvShowFromDB(): List<TvShowItemMP> =
