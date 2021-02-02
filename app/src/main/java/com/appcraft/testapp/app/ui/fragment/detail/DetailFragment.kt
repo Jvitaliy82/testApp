@@ -36,12 +36,12 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail), DetailView {
 
     override fun setData(tvDetail: TvDetail) {
         Glide.with(requireView())
-            .load(tvDetail.tvShow.image_path)
+            .load(tvDetail.tvShow.imagePath)
             .into(imageTVShow)
         textName.text = tvDetail.tvShow.name
         textNetworkCountry.text = tvDetail.tvShow.country
         textStatus.text = tvDetail.tvShow.status
-        textStarted.text = tvDetail.tvShow.start_date
+        textStarted.text = tvDetail.tvShow.startDate
         textDescription.text = tvDetail.tvShow.description
     }
 

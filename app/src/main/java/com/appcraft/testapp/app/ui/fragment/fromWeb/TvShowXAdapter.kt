@@ -56,11 +56,11 @@ class TvShowXAdapter(private val listener: OnItemClickListener) : ListAdapter<Tv
             view.apply {
                 textName.text = tvShowItemMP.name
                 textNetwork.text = tvShowItemMP.network
-                textStarted.text = tvShowItemMP.start_date
+                textStarted.text = tvShowItemMP.startDate
                 textStatus.text = tvShowItemMP.status
                 Glide
                     .with(this)
-                    .load(tvShowItemMP.image_thumbnail_path)
+                    .load(tvShowItemMP.imageThumbnailPath)
                     .transform(CenterCrop(), RoundedCorners(16))
                     .into(imageTVShow)
             }

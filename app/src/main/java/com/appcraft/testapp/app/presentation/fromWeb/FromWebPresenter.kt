@@ -32,7 +32,7 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
         coroutineProvider.scopeMain.launch {
             getTvShowByPageUseCase(page).process(
                 { result ->
-                    result.tv_showModels?.let {
+                    result.tvShowModels?.let {
                         Log.d("M1", it.toString())
                         viewState.setListInAdapter(it)
                     }

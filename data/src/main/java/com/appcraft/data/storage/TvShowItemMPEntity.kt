@@ -9,12 +9,12 @@ data class TvShowItemMPEntity(
     @Id var id: Long = 0,
     var uuid: Long,
     var name: String,
-    var start_date: String,
+    var startDate: String,
     var country: String,
     var network: String,
     var status: String,
-    var end_date: String,
-    var image_thumbnail_path: String,
+    var endDate: String,
+    var imageThumbnailPath: String,
     var permalink: String
 )
 
@@ -22,12 +22,12 @@ fun TvShowItemMP.toTvShowMPEntity(): TvShowItemMPEntity = TvShowItemMPEntity(
     id = this.id,
     uuid = this.uuid,
     name = this.name,
-    start_date = this.start_date,
+    startDate = this.startDate,
     country = this.country,
     network = this.network,
     status = this.status,
-    end_date = this.end_date,
-    image_thumbnail_path = this.image_thumbnail_path,
+    endDate = this.endDate,
+    imageThumbnailPath = this.imageThumbnailPath,
     permalink = this.permalink
 )
 
@@ -35,11 +35,11 @@ fun TvShowItemMPEntity.toTvShowItemMP(): TvShowItemMP = TvShowItemMP(
     id = this.id,
     uuid = this.uuid,
     name = this.name,
-    start_date = this.start_date,
+    startDate = this.startDate,
     country = this.country,
     network = this.network,
     status = this.status,
-    end_date = this.end_date,
-    image_thumbnail_path = this.image_thumbnail_path,
+    endDate = this.endDate,
+    imageThumbnailPath = this.imageThumbnailPath,
     permalink = this.permalink
 )

@@ -15,11 +15,11 @@ data class TvDetailModel(
 data class TvDetailItemModel(
     @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String,
-    @SerializedName("image_path") val image_path: String,
+    @SerializedName("image_path") val imagePath: String,
     @SerializedName("description") val description: String,
     @SerializedName("country") val country: String,
     @SerializedName("status") val status: String,
-    @SerializedName("start_date") val start_date: String,
+    @SerializedName("start_date") val startDate: String,
     @SerializedName("network") val network: String,
 ) : Parcelable
 
@@ -30,10 +30,10 @@ fun TvDetailModel.toTvDetail() = TvDetail(
 fun TvDetailItemModel.toTvDetailItem() = TvDetailItem(
     id = this.id,
     name = this.name,
-    image_path = this.image_path,
+    imagePath = this.imagePath,
     description = this.description,
     country = this.country,
     status = this.status,
-    start_date = this.start_date,
+    startDate = this.startDate,
     network = this.network
 )
