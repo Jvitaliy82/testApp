@@ -1,7 +1,6 @@
 package com.appcraft.data.network.model
 
 import android.os.Parcelable
-import com.appcraft.domain.model.TvDetail
 import com.appcraft.domain.model.TvDetailItem
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
@@ -23,17 +22,13 @@ data class TvDetailItemModel(
     @SerializedName("network") val network: String,
 ) : Parcelable
 
-fun TvDetailModel.toTvDetail() = TvDetail(
-    tvShow = this.tvShow.toTvDetailItem()
-)
-
-fun TvDetailItemModel.toTvDetailItem() = TvDetailItem(
-    id = this.id,
-    name = this.name,
-    imagePath = this.imagePath,
-    description = this.description,
-    country = this.country,
-    status = this.status,
-    startDate = this.startDate,
-    network = this.network
+fun TvDetailModel.toTvDetailItem() = TvDetailItem(
+    id = this.tvShow.id,
+    name = this.tvShow.name,
+    imagePath = this.tvShow.imagePath,
+    description = this.tvShow.description,
+    country = this.tvShow.country,
+    status = this.tvShow.status,
+    startDate = this.tvShow.startDate,
+    network = this.tvShow.network
 )

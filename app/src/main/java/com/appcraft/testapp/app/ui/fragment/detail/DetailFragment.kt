@@ -3,7 +3,7 @@ package com.appcraft.testapp.app.ui.fragment.detail
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import com.appcraft.domain.model.TvDetail
+import com.appcraft.domain.model.TvDetailItem
 import com.appcraft.testapp.R
 import com.appcraft.testapp.app.global.ui.fragment.BaseFragment
 import com.appcraft.testapp.app.presentation.detail.DetailPresenter
@@ -34,15 +34,15 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail), DetailView {
         }
     }
 
-    override fun setData(tvDetail: TvDetail) {
+    override fun setData(tvDetailItem: TvDetailItem) {
         Glide.with(requireView())
-            .load(tvDetail.tvShow.imagePath)
+            .load(tvDetailItem.imagePath)
             .into(imageTVShow)
-        textName.text = tvDetail.tvShow.name
-        textNetworkCountry.text = tvDetail.tvShow.country
-        textStatus.text = tvDetail.tvShow.status
-        textStarted.text = tvDetail.tvShow.startDate
-        textDescription.text = tvDetail.tvShow.description
+        textName.text = tvDetailItem.name
+        textNetworkCountry.text = tvDetailItem.country
+        textStatus.text = tvDetailItem.status
+        textStarted.text = tvDetailItem.startDate
+        textDescription.text = tvDetailItem.description
     }
 
     override fun visibleSaveButton(isVisible: Boolean) {
