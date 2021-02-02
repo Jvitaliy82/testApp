@@ -15,6 +15,9 @@ import pro.appcraft.lib.utils.common.addSystemWindowInsetToMargin
 
 class DetailFragment : BaseFragment(R.layout.fragment_detail), DetailView {
 
+    override var isLightStatusBar = false
+    override var isLightNavigationBar: Boolean = false
+
     @InjectPresenter
     lateinit var presenter: DetailPresenter
 

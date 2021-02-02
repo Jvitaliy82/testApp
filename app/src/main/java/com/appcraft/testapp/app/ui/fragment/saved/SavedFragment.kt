@@ -18,6 +18,9 @@ import java.util.*
 
 class SavedFragment: BaseFragment(R.layout.fragment_saved), SavedView, TvShowXAdapter.OnItemClickListener {
 
+    override var isLightStatusBar = false
+    override var isLightNavigationBar: Boolean = false
+
     @InjectPresenter
     lateinit var presenter: SavedPresenter
 

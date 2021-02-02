@@ -14,7 +14,8 @@ import moxy.presenter.InjectPresenter
 class FromWebFragment : BaseFragment(R.layout.fragment_from_web), FromWebView,
     TvShowXAdapter.OnItemClickListener {
 
-//    override var isLightStatusBar = false
+    override var isLightStatusBar = false
+    override var isLightNavigationBar: Boolean = false
 
     @InjectPresenter
     lateinit var presenter: FromWebPresenter

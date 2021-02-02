@@ -20,6 +20,7 @@ import java.util.*
 class MainFragment : BaseFragment(R.layout.fragment_main), MainView {
 
     override var isLightStatusBar = false
+    override var isLightNavigationBar: Boolean = false
 
     @InjectPresenter
     lateinit var presenter: MainPresenter
