@@ -32,6 +32,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:background="@color/colorBackgroundDark"
+        app:itemIconTint="@color/bnv_color_selector"
+        app:itemTextColor="@color/bnv_color_selector"
         app:menu="@menu/bottom_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
