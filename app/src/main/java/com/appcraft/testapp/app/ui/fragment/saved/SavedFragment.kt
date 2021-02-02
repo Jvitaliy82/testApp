@@ -3,20 +3,26 @@ package com.appcraft.testapp.app.ui.fragment.saved
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.appcraft.domain.model.TvShowItemMP
 import com.appcraft.testapp.R
 import com.appcraft.testapp.app.global.ui.fragment.BaseFragment
 import com.appcraft.testapp.app.presentation.saved.SavedPresenter
 import com.appcraft.testapp.app.presentation.saved.SavedView
-import com.appcraft.testapp.app.ui.fragment.fromWeb.TvShowXAdapter
+import com.appcraft.testapp.app.ui.item.TvShowItem
+import com.mikepenz.fastadapter.FastAdapter
+import com.mikepenz.fastadapter.IItem
+import com.mikepenz.fastadapter.adapters.ItemAdapter
+import com.mikepenz.fastadapter.listeners.ClickEventHook
 import kotlinx.android.synthetic.main.fragment_from_web.*
+import kotlinx.android.synthetic.main.item_recycler.view.*
 import moxy.presenter.InjectPresenter
 import pro.appcraft.lib.utils.dialog.AlertDialogAction
 import pro.appcraft.lib.utils.dialog.AlertDialogType
 import pro.appcraft.lib.utils.dialog.showAlertDialog
 import java.util.*
 
-class SavedFragment: BaseFragment(R.layout.fragment_saved), SavedView, TvShowXAdapter.OnItemClickListener {
+class SavedFragment: BaseFragment(R.layout.fragment_saved), SavedView {
 
     override var isLightStatusBar = false
     override var isLightNavigationBar: Boolean = false
@@ -24,7 +30,8 @@ class SavedFragment: BaseFragment(R.layout.fragment_saved), SavedView, TvShowXAd
     @InjectPresenter
     lateinit var presenter: SavedPresenter
 
-    private lateinit var tvShowXAdapter: TvShowXAdapter
+    private lateinit var itemAdapter: ItemAdapter<IItem<*>>
+    private lateinit var fastAdapter: FastAdapter<IItem<*>>
 
     companion object {
         fun newInstance(): SavedFragment {
@@ -38,22 +45,37 @@ class SavedFragment: BaseFragment(R.layout.fragment_saved), SavedView, TvShowXAd
         presenter.getAll()
     }
 
-    private fun setupRecyclerView() = recycler_view.apply {
-        tvShowXAdapter = TvShowXAdapter(this@SavedFragment)
-        adapter = tvShowXAdapter
-        layoutManager = LinearLayoutManager(requireContext())
-    }
+    private fun setupRecyclerView() {
+        itemAdapter = ItemAdapter()
+        fastAdapter = FastAdapter.with(itemAdapter)
 
-    override fun onItemClick(tvShowItemMP: TvShowItemMP) {
-        presenter.navigateToDetailFragment(tvShowItemMP)
-    }
+        fastAdapter.onClickListener = {_, _, item, _ ->
+            presenter.navigateToDetailFragment((item as TvShowItem).tvItem)
+            false
+        }
 
-    override fun onFavoriteClick(tvShowItemMP: TvShowItemMP) {
-        showBookGroupDeletionDialog(tvShowItemMP)
+        fastAdapter.addEventHook(object : ClickEventHook<TvShowItem>() {
+            override fun onBind(viewHolder: RecyclerView.ViewHolder): View? {
+                //return the views on which you want to bind this event
+                return if (viewHolder is TvShowItem.ViewHolder) {
+                    viewHolder.containerView.rootView.favorite
+                } else {
+                    null
+                }
+            }
+
+            override fun onClick(v: View, position: Int, fastAdapter: FastAdapter<TvShowItem>, item: TvShowItem) {
+                //react on the click event
+                showBookGroupDeletionDialog(item.tvItem)
+            }
+        })
+
+        recycler_view.adapter = fastAdapter
+        recycler_view.layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun setListInAdapter(list: List<TvShowItemMP>) {
-        tvShowXAdapter.submitList(list)
+        itemAdapter.setNewList(list.map { TvShowItem(it) })
     }
 
     private fun showBookGroupDeletionDialog(tvShowItemMP: TvShowItemMP) {
