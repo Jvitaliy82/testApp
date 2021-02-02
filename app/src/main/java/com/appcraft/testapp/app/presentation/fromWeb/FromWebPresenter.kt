@@ -5,6 +5,7 @@ import com.appcraft.domain.global.CoroutineProvider
 import com.appcraft.domain.interactor.films.AddTvShowMPUseCase
 import com.appcraft.domain.interactor.films.GetTvShowByPageUseCase
 import com.appcraft.domain.model.TvShowItemMP
+import com.appcraft.testapp.R
 import com.appcraft.testapp.app.Screens
 import com.appcraft.testapp.app.dispatcher.event.CustomEvent
 import com.appcraft.testapp.app.dispatcher.event.EventDispatcher
@@ -33,7 +34,6 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
             getTvShowByPageUseCase(page).process(
                 { result ->
                     result.tvShowModels?.let {
-                        Log.d("M1", it.toString())
                         viewState.setListInAdapter(it)
                     }
                 },
@@ -49,9 +49,8 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
     fun saveTvShow(tvShowModel: TvShowItemMP) {
         coroutineProvider.scopeMain.launch {
             addTvShowMPUseCase(tvShowModel).process(
-                //todo
                 {
-                    Log.d("M1", "успешно сохранили!!!")
+                    notifier.sendMessage(R.string.item_saved)
                 },
                 {
                     Log.d("M1", "что то не так: ${it.message}")
