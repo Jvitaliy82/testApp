@@ -6,12 +6,8 @@ import com.appcraft.domain.model.TvShowItemMP
 import com.appcraft.testapp.R
 import com.appcraft.testapp.app.ui.fragment.detail.DetailFlowFragment
 import com.appcraft.testapp.app.ui.fragment.detail.DetailFragment
-import com.appcraft.testapp.app.ui.fragment.fromWeb.FromWebFlowFragment
-import com.appcraft.testapp.app.ui.fragment.fromWeb.FromWebFragment
 import com.appcraft.testapp.app.ui.fragment.main.MainFlowFragment
 import com.appcraft.testapp.app.ui.fragment.main.MainFragment
-import com.appcraft.testapp.app.ui.fragment.saved.SavedFlowFragment
-import com.appcraft.testapp.app.ui.fragment.saved.SavedFragment
 import com.appcraft.testapp.app.ui.fragment.splash.SplashFlowFragment
 import com.appcraft.testapp.app.ui.fragment.splash.SplashFragment
 import com.github.terrakok.cicerone.androidx.ActivityScreen
@@ -22,10 +18,6 @@ object Screens {
         fun splash() = SplashFlowFragment::class.getFragmentScreen()
 
         fun main() = MainFlowFragment::class.getFragmentScreen()
-
-        fun fromWeb() = FromWebFlowFragment::class.getFragmentScreen()
-
-        fun saved() = SavedFlowFragment::class.getFragmentScreen()
 
         fun detail(
             item: TvShowItemMP,
@@ -40,10 +32,6 @@ object Screens {
         fun splash() = SplashFragment::class.getFragmentScreen()
 
         fun main() = MainFragment::class.getFragmentScreen()
-
-        fun fromWeb() = FromWebFragment::class.getFragmentScreen()
-
-        fun saved() = SavedFragment::class.getFragmentScreen()
 
         fun detail(
             item: TvShowItemMP,
