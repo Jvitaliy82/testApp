@@ -2,6 +2,7 @@ package com.appcraft.testapp.app.ui.fragment.fromWeb
 
 import android.os.Bundle
 import android.view.View
+import android.widget.CheckBox
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.appcraft.domain.model.TvShowItemMP
@@ -39,7 +40,7 @@ class FromWebFragment : BaseFragment(R.layout.fragment_from_web), FromWebView {
         itemAdapter = ItemAdapter()
         fastAdapter = FastAdapter.with(itemAdapter)
 
-        fastAdapter.onClickListener = {_, _, item, _ ->
+        fastAdapter.onClickListener = { _, _, item, _ ->
             presenter.navigateToDetailFragment((item as TvShowItem).tvItem)
             false
         }
@@ -54,9 +55,18 @@ class FromWebFragment : BaseFragment(R.layout.fragment_from_web), FromWebView {
                 }
             }
 
-            override fun onClick(v: View, position: Int, fastAdapter: FastAdapter<TvShowItem>, item: TvShowItem) {
+            override fun onClick(
+                v: View,
+                position: Int,
+                fastAdapter: FastAdapter<TvShowItem>,
+                item: TvShowItem
+            ) {
                 //react on the click event
-                presenter.saveTvShow(item.tvItem)
+                if ((v as CheckBox).isChecked) {
+                    presenter.saveTvShow(item.tvItem)
+                } else {
+                    presenter.deleteTvShow(item.tvItem)
+                }
             }
         })
 

@@ -3,6 +3,8 @@ package com.appcraft.testapp.app.presentation.fromWeb
 import android.util.Log
 import com.appcraft.domain.global.CoroutineProvider
 import com.appcraft.domain.interactor.films.AddTvShowMPUseCase
+import com.appcraft.domain.interactor.films.DeleteItemUseCase
+import com.appcraft.domain.interactor.films.GetAllTvShowMPUseCase
 import com.appcraft.domain.interactor.films.GetTvShowByPageUseCase
 import com.appcraft.domain.model.TvShowItemMP
 import com.appcraft.testapp.R
@@ -24,6 +26,8 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
     private val notifier: Notifier by inject()
     private val getTvShowByPageUseCase: GetTvShowByPageUseCase by inject()
     private val addTvShowMPUseCase: AddTvShowMPUseCase by inject()
+    private val deleteItemUseCase: DeleteItemUseCase by inject()
+    private val getAllTvShowMPUseCase: GetAllTvShowMPUseCase by inject()
 
     init {
         subscribeToEvents()
@@ -34,8 +38,29 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
             getTvShowByPageUseCase(page).process(
                 { result ->
                     result.tvShowModels?.let {
-                        viewState.setListInAdapter(it)
+                        markSaved(it)
                     }
+                },
+                { error ->
+                    errorHandler.proceed(error) {
+                        notifier.sendMessage(it)
+                    }
+                }
+            )
+        }
+    }
+
+    fun markSaved(list: List<TvShowItemMP>) {
+        coroutineProvider.scopeMain.launch {
+            getAllTvShowMPUseCase().process(
+                { result ->
+                    list.forEach {
+                        if (result.contains(it)) {
+                            it.isFavorite = true
+                        }
+                    }
+                    viewState.setListInAdapter(list)
+
                 },
                 { error ->
                     errorHandler.proceed(error) {
@@ -60,6 +85,20 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
 
     }
 
+    fun deleteTvShow(tvItem: TvShowItemMP) {
+        coroutineProvider.scopeMain.launch {
+            deleteItemUseCase(tvItem).process(
+                {
+                    notifier.sendMessage(R.string.item_deleted)
+                },
+                {
+                    Log.d("M1", "что то не так: ${it.message}")
+                }
+            )
+        }
+    }
+
+
     fun navigateToDetailFragment(item: TvShowItemMP) {
         viewState.routerForwardTo(Screens.Flow.detail(item))
     }
@@ -76,7 +115,8 @@ class FromWebPresenter : BasePresenter<FromWebView>(), EventDispatcher.EventList
                 val x = event.longData
                 val y = event.stringData
             }
-            else -> { }
+            else -> {
+            }
         }
     }
 

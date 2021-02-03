@@ -13,5 +13,6 @@ data class TvShowItemMP(
     val status: String,
     val endDate: String,
     val imageThumbnailPath: String,
-    val permalink: String
+    val permalink: String,
+    var isFavorite: Boolean = false
 ) : Parcelable

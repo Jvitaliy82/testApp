@@ -30,9 +30,14 @@ class SavedPresenter : BasePresenter<SavedView>(), EventDispatcher.EventListener
 
     fun getAll() {
         coroutineProvider.scopeMain.launch {
-            getAllTvShowMPUseCase().process({
-                viewState.setListInAdapter(it)
-            }, {})
+            getAllTvShowMPUseCase().process({ result ->
+                result.forEach {
+                    it.isFavorite = true
+                }
+                viewState.setListInAdapter(result)
+            }, {
+
+            })
         }
     }
 
@@ -40,7 +45,9 @@ class SavedPresenter : BasePresenter<SavedView>(), EventDispatcher.EventListener
         coroutineProvider.scopeMain.launch {
             deleteItemUseCase(tvShowItemMP).process({
                 getAll()
-            }, {})
+            }, {
+
+            })
         }
 
     }

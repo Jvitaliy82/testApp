@@ -29,6 +29,7 @@ class TvShowItem(
             itemView.textNetwork.text = item.tvItem.network
             itemView.textStarted.text = item.tvItem.startDate
             itemView.textStatus.text = item.tvItem.status
+            itemView.favorite.isChecked = item.tvItem.isFavorite
             Glide
                 .with(context)
                 .load(item.tvItem.imageThumbnailPath)

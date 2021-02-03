@@ -45,11 +45,13 @@
         app:layout_constraintStart_toEndOf="@id/imageTVShow"
         app:layout_constraintTop_toTopOf="@id/imageTVShow" />
 
-    <ImageView
+    <CheckBox
         android:id="@+id/favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_favorite"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:button="@drawable/favorite_selector"
         app:layout_constraintEnd_toEndOf="@id/viewBackground"
         android:layout_margin="4dp"
         app:layout_constraintTop_toTopOf="@id/viewBackground"/>

@@ -88,6 +88,7 @@ class SavedFragment: BaseFragment(R.layout.fragment_saved), SavedView {
             ),
             actions = listOf(
                 AlertDialogAction(getString(R.string.cancel)) {
+                    presenter.getAll()
                     it.dismiss()
                 },
                 AlertDialogAction(getString(R.string.delete)) {
